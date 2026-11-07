@@ -18,14 +18,13 @@
             color: var(--text-color);
             margin: 0;
             padding: 0;
-            /* Correction mobile : retour à la ligne automatique activé */
             overflow-x: hidden;
             word-break: break-word;
             white-space: pre-wrap; 
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Barre de contrôle mobile-friendly en bas ou en haut */
+        /* Barre de contrôle du bas */
         .controls-bar {
             position: fixed;
             bottom: 0;
@@ -64,16 +63,15 @@
             cursor: pointer;
             font-weight: bold;
             font-size: 0.95rem;
-            min-height: 40px; /* Confort tactile mobile */
+            min-height: 40px;
         }
         button:active { background-color: #475569; }
         
-        /* Corps du prompteur adapté mobile */
         .prompter-container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 30px 20px 220px 20px; /* Espace en bas pour la barre de contrôle */
-            font-size: 1.4rem; /* Taille de base plus lisible sur smartphone */
+            padding: 30px 20px 220px 20px;
+            font-size: 1.4rem;
             line-height: 1.6;
         }
 
@@ -96,12 +94,16 @@
             font-weight: bold;
         }
 
-        /* Bouton flottant pour réafficher les contrôles */
-        .show-controls-btn {
+        /* Groupe de boutons flottants en bas à droite */
+        .floating-actions {
             position: fixed;
             bottom: 15px;
             right: 15px;
             z-index: 999;
+            display: flex;
+            gap: 10px;
+        }
+        .float-btn {
             background: #38bdf8;
             color: #0f172a;
             border-radius: 50%;
@@ -111,18 +113,27 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             border: none;
+            font-weight: bold;
         }
-        .show-controls-btn.hidden {
+        .float-btn.pause-mode {
+            background: #ef4444;
+            color: white;
+        }
+        .float-btn.hidden {
             display: none;
         }
     </style>
 </head>
 <body>
 
-<button class="show-controls-btn hidden" id="showBtn" onclick="toggleControls()" title="Afficher les commandes">⚙️</button>
+<!-- Boutons flottants permanents en bas à droite -->
+<div class="floating-actions">
+    <button class="float-btn hidden" id="floatPlayBtn" onclick="togglePlay()" title="Pause / Reprise">⏸</button>
+    <button class="float-btn" id="floatSettingsBtn" onclick="toggleControls()" title="Paramètres">⚙️</button>
+</div>
 
 <div class="controls-bar" id="controlsBar">
     <div class="control-row">
@@ -136,14 +147,15 @@
         <button onclick="resetScroll()" style="background-color: #475569;">⏮ Top</button>
     </div>
     
-    <div class="control-row" style="background: rgba(15,23,42,0.5); padding: 5px 10px; border-radius: 6px;">
-        <div style="display: flex; align-items: center; gap: 8px;">
+    <div class="control-row" style="background: rgba(15,23,42,0.5); padding: 5px 10px; border-radius: 6px; justify-content: space-around;">
+        <div style="display: flex; align-items: center; gap: 6px;">
             <span>Vitesse: <span id="speedVal" style="color: #38bdf8; font-weight: bold;">0.4</span></span>
-            <input type="range" id="speedRange" min="0.1" max="3" step="0.1" value="0.4" style="width: 100px;" oninput="updateSpeed(this.value)">
+            <button onclick="adjustSpeed(-0.1)" style="padding: 4px 10px; min-height: 30px;">-</button>
+            <button onclick="adjustSpeed(0.1)" style="padding: 4px 10px; min-height: 30px;">+</button>
         </div>
         <div style="display: flex; gap: 5px;">
-            <button onclick="adjustFontSize(-2)" style="padding: 5px 10px;">A-</button>
-            <button onclick="adjustFontSize(2)" style="padding: 5px 10px;">A+</button>
+            <button onclick="adjustFontSize(-2)" style="padding: 4px 10px; min-height: 30px;">A-</button>
+            <button onclick="adjustFontSize(2)" style="padding: 4px 10px; min-height: 30px;">A+</button>
         </div>
     </div>
 </div>
@@ -158,9 +170,10 @@
 
 <script>
     let isPlaying = false;
-    let scrollSpeed = 0.4; // Vitesse de base beaucoup plus lente et confortable
+    let scrollSpeed = 0.4;
     let animationFrameId = null;
-    let currentFontSize = 1.4; // en rem (adapté mobile)
+    let currentFontSize = 1.4;
+    let wasPlayingBeforeTouch = false;
 
     async function initPrompter() {
         const urlParams = new URLSearchParams(window.location.search);
@@ -211,32 +224,32 @@
     function togglePlay() {
         isPlaying = !isPlaying;
         const btn = document.getElementById('playBtn');
+        const floatPlayBtn = document.getElementById('floatPlayBtn');
         const controls = document.getElementById('controlsBar');
-        const showBtn = document.getElementById('showBtn');
 
         if (isPlaying) {
             btn.innerText = "⏸ Pause";
             btn.style.backgroundColor = "#ef4444";
+            floatPlayBtn.innerText = "⏸";
+            floatPlayBtn.classList.add('pause-mode');
+            floatPlayBtn.classList.remove('hidden');
             animationFrameId = requestAnimationFrame(step);
             
-            // Masquer automatiquement la barre de contrôle pour laisser place au texte
+            // Masquer automatiquement le panneau de contrôle bas pour laisser place au texte
             controls.classList.add('hidden');
-            showBtn.classList.remove('hidden');
         } else {
             btn.innerText = "▶ Play";
             btn.style.backgroundColor = "#22c55e";
+            floatPlayBtn.innerText = "▶";
+            floatPlayBtn.classList.remove('pause-mode');
             cancelAnimationFrame(animationFrameId);
             controls.classList.remove('hidden');
-            showBtn.classList.add('hidden');
         }
     }
 
     function toggleControls() {
         const controls = document.getElementById('controlsBar');
-        const showBtn = document.getElementById('showBtn');
-        
         controls.classList.toggle('hidden');
-        showBtn.classList.toggle('hidden');
     }
 
     function resetScroll() {
@@ -244,9 +257,9 @@
         if (isPlaying) togglePlay();
     }
 
-    function updateSpeed(val) {
-        scrollSpeed = parseFloat(val);
-        document.getElementById('speedVal').innerText = val;
+    function adjustSpeed(delta) {
+        scrollSpeed = Math.max(0.1, Math.min(3, scrollSpeed + delta));
+        document.getElementById('speedVal').innerText = scrollSpeed.toFixed(1);
     }
 
     function adjustFontSize(delta) {
@@ -254,10 +267,22 @@
         document.getElementById('prompterContent').style.fontSize = currentFontSize + 'rem';
     }
 
-    // Stop le défilement automatique si l'utilisateur touche l'écran pour scroller manuellement
-    window.addEventListener('touchstart', () => { 
-        if(isPlaying) togglePlay(); 
+    // Gestion intelligente du tactile : mémorise l'état si l'utilisateur touche l'écran pour scroller
+    window.addEventListener('touchstart', () => {
+        if (isPlaying) {
+            wasPlayingBeforeTouch = true;
+            isPlaying = false;
+            cancelAnimationFrame(animationFrameId);
+            document.getElementById('playBtn').innerText = "▶ Play";
+            document.getElementById('playBtn').style.backgroundColor = "#22c55e";
+            const floatPlayBtn = document.getElementById('floatPlayBtn');
+            floatPlayBtn.innerText = "▶";
+            floatPlayBtn.classList.remove('pause-mode');
+        }
     });
+
+    // Optionnel : si l'utilisateur s'arrête de toucher, on garde en mémoire qu'il était en train de lire, 
+    // il lui suffit d'appuyer sur le bouton rond pause/play flottant pour reprendre instantanément.
 
     initPrompter();
 </script>
