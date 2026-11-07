@@ -13,6 +13,8 @@
             --accent-hover: #0ea5e9;
             --border-color: #334155;
             --success-color: #22c55e;
+            --chord-bg: #334155;
+            --chord-hover: #475569;
         }
         body {
             font-family: system-ui, -apple-system, sans-serif;
@@ -25,7 +27,7 @@
         }
         .container {
             width: 100%;
-            max-width: 800px;
+            max-width: 1200px; /* Élargi pour profiter du grand écran */
         }
         header {
             display: flex;
@@ -49,6 +51,15 @@
         }
         .btn:hover { background-color: var(--accent-hover); }
         .btn-success { background-color: var(--success-color); color: white; }
+        
+        /* Layout en 2 colonnes pour grand écran */
+        .admin-layout {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+            align-items: start;
+        }
+
         .form-group {
             margin-bottom: 1.5rem;
         }
@@ -92,6 +103,51 @@
             gap: 10px;
             justify-content: flex-end;
         }
+
+        /* Panneau latéral des accords */
+        .chords-sidebar {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 8px;
+            position: sticky;
+            top: 20px;
+        }
+        .chords-sidebar h3 {
+            margin-top: 0;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+        .chord-section-title {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin: 10px 0 5px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .chords-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+        }
+        .chord-btn {
+            background-color: var(--chord-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 8px 4px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.15s, border-color 0.15s;
+        }
+        .chord-btn:hover {
+            background-color: var(--chord-hover);
+            border-color: var(--accent-color);
+        }
     </style>
 </head>
 <body>
@@ -102,60 +158,116 @@
         <a href="index.html" class="btn">← Retour au Prompteur</a>
     </header>
 
-    <div class="card">
-        <h2>Ajouter / Modifier une chanson</h2>
-        
-        <div class="row">
-            <div class="form-group">
-                <label for="title">Titre de la chanson</label>
-                <input type="text" id="title" placeholder="Ex: Hotel California">
-            </div>
-            <div class="form-group">
-                <label for="artist">Artiste / Groupe</label>
-                <input type="text" id="artist" placeholder="Ex: Eagles">
-            </div>
-        </div>
+    <div class="admin-layout">
+        <!-- Colonne Principale : Formulaire -->
+        <div>
+            <div class="card">
+                <h2>Ajouter / Modifier une chanson</h2>
+                
+                <div class="row">
+                    <div class="form-group">
+                        <label for="title">Titre de la chanson</label>
+                        <input type="text" id="title" placeholder="Ex: Hotel California">
+                    </div>
+                    <div class="form-group">
+                        <label for="artist">Artiste / Groupe</label>
+                        <input type="text" id="artist" placeholder="Ex: Eagles">
+                    </div>
+                </div>
 
-        <div class="row">
-            <div class="form-group">
-                <label for="style">Style / Genre</label>
-                <input type="text" id="style" placeholder="Ex: Rock, Folk...">
-            </div>
-            <div class="form-group">
-                <label for="lang">Langue</label>
-                <select id="lang">
-                    <option value="FR">Français</option>
-                    <option value="EN">Anglais</option>
-                    <option value="ES">Espagnol</option>
-                    <option value="AUTRE">Autre</option>
-                </select>
-            </div>
-        </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="style">Style / Genre</label>
+                        <input type="text" id="style" placeholder="Ex: Rock, Folk...">
+                    </div>
+                    <div class="form-group">
+                        <label for="lang">Langue</label>
+                        <select id="lang">
+                            <option value="FR">Français</option>
+                            <option value="EN">Anglais</option>
+                            <option value="ES">Espagnol</option>
+                            <option value="AUTRE">Autre</option>
+                        </select>
+                    </div>
+                </div>
 
-        <div class="form-group">
-            <label for="rawContent">Paroles et Accords (Format Ligne par Ligne)</label>
-            <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 0;">
-                Astuce : Pour chaque partie, mets une ligne d'accords (en haut) et juste en dessous la ligne de paroles correspondante. Utilise des espaces pour aligner les accords au bon endroit au-dessus des mots.
-            </p>
-            <textarea id="rawContent" rows="12" placeholder="[Am]               [C]
+                <div class="form-group">
+                    <label for="rawContent">Paroles et Accords (Format Ligne par Ligne)</label>
+                    <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 0;">
+                        Place ton curseur dans la zone de texte et clique sur les accords à droite pour les insérer entre crochets au bon endroit.
+                    </p>
+                    <textarea id="rawContent" rows="14" placeholder="[Am]               [C]
 On a two-lane highway, listening to the radio..."></textarea>
+                </div>
+
+                <div class="actions">
+                    <button class="btn btn-success" onclick="addSong()">Ajouter à la liste</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Fichier de données (`songs.json`)</h2>
+                <p style="font-size: 0.9rem; color: #94a3b8;">
+                    Voici le code de ton fichier global. Clique pour télécharger la dernière version mise à jour.
+                </p>
+                <div class="form-group">
+                    <textarea id="jsonOutput" rows="6" readonly style="font-size: 0.8rem;"></textarea>
+                </div>
+                <div class="actions">
+                    <button class="btn" onclick="downloadJSON()">Télécharger songs.json</button>
+                </div>
+            </div>
         </div>
 
-        <div class="actions">
-            <button class="btn btn-success" onclick="addSong()">Ajouter à la liste</button>
-        </div>
-    </div>
+        <!-- Colonne Latérale : Palette d'accords -->
+        <div class="chords-sidebar">
+            <h3>🎸 Palette d'Accords</h3>
+            
+            <div class="chord-section-title">Majeurs</div>
+            <div class="chords-grid">
+                <button class="chord-btn" onclick="insertChord('C')">C</button>
+                <button class="chord-btn" onclick="insertChord('D')">D</button>
+                <button class="chord-btn" onclick="insertChord('E')">E</button>
+                <button class="chord-btn" onclick="insertChord('F')">F</button>
+                <button class="chord-btn" onclick="insertChord('G')">G</button>
+                <button class="chord-btn" onclick="insertChord('A')">A</button>
+                <button class="chord-btn" onclick="insertChord('B')">B</button>
+            </div>
 
-    <div class="card">
-        <h2>Fichier de données (`songs.json`)</h2>
-        <p style="font-size: 0.9rem; color: #94a3b8;">
-            Voici le code de ton fichier global de chansons. À chaque modification, clique sur le bouton ci-dessous pour télécharger le fichier <b>songs.json</b> mis à jour, et dépose-le dans ton dossier de projet.
-        </p>
-        <div class="form-group">
-            <textarea id="jsonOutput" rows="8" readonly style="font-size: 0.8rem;"></textarea>
-        </div>
-        <div class="actions">
-            <button class="btn" onclick="downloadJSON()">Télécharger songs.json</button>
+            <div class="chord-section-title">Mineurs</div>
+            <div class="chords-grid">
+                <button class="chord-btn" onclick="insertChord('Am')">Am</button>
+                <button class="chord-btn" onclick="insertChord('Bm')">Bm</button>
+                <button class="chord-btn" onclick="insertChord('Cm')">Cm</button>
+                <button class="chord-btn" onclick="insertChord('Dm')">Dm</button>
+                <button class="chord-btn" onclick="insertChord('Em')">Em</button>
+                <button class="chord-btn" onclick="insertChord('Fm')">Fm</button>
+                <button class="chord-btn" onclick="insertChord('Gm')">Gm</button>
+            </div>
+
+            <div class="chord-section-title">Septièmes (7)</div>
+            <div class="chords-grid">
+                <button class="chord-btn" onclick="insertChord('C7')">C7</button>
+                <button class="chord-btn" onclick="insertChord('D7')">D7</button>
+                <button class="chord-btn" onclick="insertChord('E7')">E7</button>
+                <button class="chord-btn" onclick="insertChord('F7')">F7</button>
+                <button class="chord-btn" onclick="insertChord('G7')">G7</button>
+                <button class="chord-btn" onclick="insertChord('A7')">A7</button>
+                <button class="chord-btn" onclick="insertChord('B7')">B7</button>
+                <button class="chord-btn" onclick="insertChord('Am7')">Am7</button>
+                <button class="chord-btn" onclick="insertChord('Dm7')">Dm7</button>
+                <button class="chord-btn" onclick="insertChord('Em7')">Em7</button>
+            </div>
+
+            <div class="chord-section-title">Autres / Sus / Maj7</div>
+            <div class="chords-grid">
+                <button class="chord-btn" onclick="insertChord('F#m')">F#m</button>
+                <button class="chord-btn" onclick="insertChord('C#m')">C#m</button>
+                <button class="chord-btn" onclick="insertChord('Bb')">Bb</button>
+                <button class="chord-btn" onclick="insertChord('Eb')">Eb</button>
+                <button class="chord-btn" onclick="insertChord('Sus4')">Sus4</button>
+                <button class="chord-btn" onclick="insertChord('Maj7')">Maj7</button>
+            </div>
         </div>
     </div>
 </div>
@@ -163,7 +275,6 @@ On a two-lane highway, listening to the radio..."></textarea>
 <script>
     let songsData = [];
 
-    // Charger les chansons existantes si le fichier songs.json est accessible en local
     async function initAdmin() {
         try {
             const res = await fetch('songs.json');
@@ -174,6 +285,23 @@ On a two-lane highway, listening to the radio..."></textarea>
             songsData = [];
         }
         updateJSONOutput();
+    }
+
+    // Fonction magique pour insérer l'accord pile à l'endroit du curseur
+    function insertChord(chordName) {
+        const textarea = document.getElementById('rawContent');
+        const startPos = textarea.selectionStart;
+        const endPos = textarea.selectionEnd;
+        const text = textarea.value;
+
+        const chordFormatted = `[${chordName}]`;
+
+        // Insère l'accord entre crochets à la position exacte du curseur
+        textarea.value = text.substring(0, startPos) + chordFormatted + text.substring(endPos, text.length);
+        
+        // Replace le curseur juste après l'accord inséré pour continuer à taper
+        textarea.selectionStart = textarea.selectionEnd = startPos + chordFormatted.length;
+        textarea.focus();
     }
 
     function addSong() {
@@ -188,16 +316,11 @@ On a two-lane highway, listening to the radio..."></textarea>
             return;
         }
 
-        // Transformation du texte brut en structure intelligente pour le prompteur
         const lines = rawContent.split('\n');
         const formattedLines = [];
 
         for (let i = 0; i < lines.length; i++) {
-            let line = lines[i];
-            // Détection simple : si la ligne contient beaucoup de crochets ou ressemble à une ligne d'accords
-            // On associe la ligne d'accords à la ligne de texte suivante si possible, ou on traite ligne par ligne.
-            // Pour faire simple et robuste, on garde la structure brute ligne par ligne avec repérage des accords entre crochets.
-            formattedLines.push({ text: line });
+            formattedLines.push({ text: lines[i] });
         }
 
         const newSong = {
@@ -211,7 +334,6 @@ On a two-lane highway, listening to the radio..."></textarea>
         songsData.push(newSong);
         updateJSONOutput();
 
-        // Reset formulaire
         document.getElementById('title').value = '';
         document.getElementById('artist').value = '';
         document.getElementById('rawContent').value = '';
