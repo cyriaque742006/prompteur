@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration - Prompteur</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --accent-color: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --border-color: #334155;
+            --success-color: #22c55e;
+        }
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+        h1 { margin: 0; font-size: 1.5rem; color: var(--accent-color); }
+        .btn {
+            background-color: var(--accent-color);
+            color: #0f172a;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover { background-color: var(--accent-hover); }
+        .btn-success { background-color: var(--success-color); color: white; }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #cbd5e1;
+        }
+        input, select, textarea {
+            width: 100%;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 10px;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        textarea {
+            font-family: monospace;
+            white-space: pre;
+            line-height: 1.6;
+        }
+        .row {
+            display: flex;
+            gap: 15px;
+        }
+        .row .form-group {
+            flex: 1;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🛠️ Éditeur de Chansons</h1>
+        <a href="index.html" class="btn">← Retour au Prompteur</a>
+    </header>
+
+    <div class="card">
+        <h2>Ajouter / Modifier une chanson</h2>
+        
+        <div class="row">
+            <div class="form-group">
+                <label for="title">Titre de la chanson</label>
+                <input type="text" id="title" placeholder="Ex: Hotel California">
+            </div>
+            <div class="form-group">
+                <label for="artist">Artiste / Groupe</label>
+                <input type="text" id="artist" placeholder="Ex: Eagles">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label for="style">Style / Genre</label>
+                <input type="text" id="style" placeholder="Ex: Rock, Folk...">
+            </div>
+            <div class="form-group">
+                <label for="lang">Langue</label>
+                <select id="lang">
+                    <option value="FR">Français</option>
+                    <option value="EN">Anglais</option>
+                    <option value="ES">Espagnol</option>
+                    <option value="AUTRE">Autre</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="rawContent">Paroles et Accords (Format Ligne par Ligne)</label>
+            <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 0;">
+                Astuce : Pour chaque partie, mets une ligne d'accords (en haut) et juste en dessous la ligne de paroles correspondante. Utilise des espaces pour aligner les accords au bon endroit au-dessus des mots.
+            </p>
+            <textarea id="rawContent" rows="12" placeholder="[Am]               [C]
+On a two-lane highway, listening to the radio..."></textarea>
+        </div>
+
+        <div class="actions">
+            <button class="btn btn-success" onclick="addSong()">Ajouter à la liste</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Fichier de données (`songs.json`)</h2>
+        <p style="font-size: 0.9rem; color: #94a3b8;">
+            Voici le code de ton fichier global de chansons. À chaque modification, clique sur le bouton ci-dessous pour télécharger le fichier <b>songs.json</b> mis à jour, et dépose-le dans ton dossier de projet.
+        </p>
+        <div class="form-group">
+            <textarea id="jsonOutput" rows="8" readonly style="font-size: 0.8rem;"></textarea>
+        </div>
+        <div class="actions">
+            <button class="btn" onclick="downloadJSON()">Télécharger songs.json</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let songsData = [];
+
+    // Charger les chansons existantes si le fichier songs.json est accessible en local
+    async function initAdmin() {
+        try {
+            const res = await fetch('songs.json');
+            if (res.ok) {
+                songsData = await res.json();
+            }
+        } catch (e) {
+            songsData = [];
+        }
+        updateJSONOutput();
+    }
+
+    function addSong() {
+        const title = document.getElementById('title').value.trim();
+        const artist = document.getElementById('artist').value.trim();
+        const style = document.getElementById('style').value.trim();
+        const lang = document.getElementById('lang').value;
+        const rawContent = document.getElementById('rawContent').value;
+
+        if (!title || !artist || !rawContent) {
+            alert("Veuillez remplir au minimum le titre, l'artiste et les paroles.");
+            return;
+        }
+
+        // Transformation du texte brut en structure intelligente pour le prompteur
+        const lines = rawContent.split('\n');
+        const formattedLines = [];
+
+        for (let i = 0; i < lines.length; i++) {
+            let line = lines[i];
+            // Détection simple : si la ligne contient beaucoup de crochets ou ressemble à une ligne d'accords
+            // On associe la ligne d'accords à la ligne de texte suivante si possible, ou on traite ligne par ligne.
+            // Pour faire simple et robuste, on garde la structure brute ligne par ligne avec repérage des accords entre crochets.
+            formattedLines.push({ text: line });
+        }
+
+        const newSong = {
+            title,
+            artist,
+            style: style || 'Pop',
+            lang,
+            lines: formattedLines
+        };
+
+        songsData.push(newSong);
+        updateJSONOutput();
+
+        // Reset formulaire
+        document.getElementById('title').value = '';
+        document.getElementById('artist').value = '';
+        document.getElementById('rawContent').value = '';
+        alert("Chanson ajoutée avec succès ! N'oublie pas de télécharger le fichier songs.json en bas.");
+    }
+
+    function updateJSONOutput() {
+        document.getElementById('jsonOutput').value = JSON.stringify(songsData, null, 2);
+    }
+
+    function downloadJSON() {
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(document.getElementById('jsonOutput').value);
+        const downloadAnchor = document.createElement('a');
+        downloadAnchor.setAttribute("href", dataStr);
+        downloadAnchor.setAttribute("download", "songs.json");
+        document.body.appendChild(downloadAnchor);
+        downloadAnchor.click();
+        downloadAnchor.remove();
+    }
+
+    initAdmin();
+</script>
+
+</body>
+</html>
