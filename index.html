@@ -115,6 +115,11 @@
             const response = await fetch('songs.json');
             if (!response.ok) throw new Error("Fichier songs.json introuvable");
             songs = await response.json();
+            
+            // On associe chaque chanson à son index d'origine AVANT de trier, 
+            // pour être sûrs de pointer vers la bonne ligne dans le fichier JSON.
+            songs = songs.map((song, originalIndex) => ({ ...song, originalIndex }));
+
             displaySongs(songs);
             populateFilters(songs);
         } catch (e) {
@@ -134,11 +139,16 @@
             return;
         }
 
-        list.innerHTML = songsToDisplay.map((song) => {
-            // On récupère le vrai index de la chanson dans le tableau général `songs` d'origine
-            const originalIndex = songs.indexOf(song);
+        // Tri principal : Par Artiste (alphabétique), puis par Titre de chanson (alphabétique)
+        const sortedSongs = [...songsToDisplay].sort((a, b) => {
+            const artistCompare = a.artist.localeCompare(b.artist, 'fr', { sensitivity: 'base' });
+            if (artistCompare !== 0) return artistCompare;
+            return a.title.localeCompare(b.title, 'fr', { sensitivity: 'base' });
+        });
+
+        list.innerHTML = sortedSongs.map((song) => {
             return `
-                <div class="song-card" onclick="window.location.href='prompter.html?id=${originalIndex}'">
+                <div class="song-card" onclick="window.location.href='prompter.html?id=${song.originalIndex}'">
                     <div class="song-info">
                         <h3>${song.title}</h3>
                         <p>${song.artist} • <i>${song.style || 'Pop'}</i> • [${song.lang || 'FR'}]</p>
@@ -150,8 +160,8 @@
     }
 
     function populateFilters(data) {
-        const styles = [...new Set(data.map(s => s.style).filter(Boolean))];
-        const langs = [...new Set(data.map(s => s.lang).filter(Boolean))];
+        const styles = [...new Set(data.map(s => s.style).filter(Boolean))].sort();
+        const langs = [...new Set(data.map(s => s.lang).filter(Boolean))].sort();
 
         const styleSelect = document.getElementById('styleFilter');
         styles.forEach(s => styleSelect.innerHTML += `<option value="${s}">${s}</option>`);
