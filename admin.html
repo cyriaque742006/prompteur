@@ -13,6 +13,7 @@
             --accent-hover: #0ea5e9;
             --border-color: #334155;
             --success-color: #22c55e;
+            --danger-color: #ef4444;
             --chord-bg: #334155;
             --chord-hover: #475569;
         }
@@ -27,7 +28,7 @@
         }
         .container {
             width: 100%;
-            max-width: 1200px; /* Élargi pour profiter du grand écran */
+            max-width: 1200px;
         }
         header {
             display: flex;
@@ -51,8 +52,9 @@
         }
         .btn:hover { background-color: var(--accent-hover); }
         .btn-success { background-color: var(--success-color); color: white; }
+        .btn-danger { background-color: var(--danger-color); color: white; padding: 6px 12px; font-size: 0.85rem; }
+        .btn-warning { background-color: #f59e0b; color: white; padding: 6px 12px; font-size: 0.85rem; }
         
-        /* Layout en 2 colonnes pour grand écran */
         .admin-layout {
             display: grid;
             grid-template-columns: 1fr 300px;
@@ -102,7 +104,28 @@
             display: flex;
             gap: 10px;
             justify-content: flex-end;
+            align-items: center;
         }
+
+        /* Liste des chansons existantes */
+        .songs-table {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .song-row-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #0f172a;
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            border-radius: 6px;
+        }
+        .song-meta h4 { margin: 0 0 4px 0; font-size: 1rem; }
+        .song-meta p { margin: 0; font-size: 0.8rem; color: #94a3b8; }
 
         /* Panneau latéral des accords */
         .chords-sidebar {
@@ -125,7 +148,6 @@
             color: #94a3b8;
             margin: 10px 0 5px 0;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
         }
         .chords-grid {
             display: grid;
@@ -142,7 +164,6 @@
             font-size: 0.85rem;
             cursor: pointer;
             text-align: center;
-            transition: background-color 0.15s, border-color 0.15s;
         }
         .chord-btn:hover {
             background-color: var(--chord-hover);
@@ -154,15 +175,16 @@
 
 <div class="container">
     <header>
-        <h1>🛠️ Éditeur de Chansons</h1>
+        <h1>🛠️ Éditeur & Gestionnaire de Chansons</h1>
         <a href="index.html" class="btn">← Retour au Prompteur</a>
     </header>
 
     <div class="admin-layout">
-        <!-- Colonne Principale : Formulaire -->
+        <!-- Colonne Principale -->
         <div>
             <div class="card">
-                <h2>Ajouter / Modifier une chanson</h2>
+                <h2 id="formTitle">Ajouter une nouvelle chanson</h2>
+                <input type="hidden" id="editingIndex" value="-1">
                 
                 <div class="row">
                     <div class="form-group">
@@ -193,28 +215,32 @@
 
                 <div class="form-group">
                     <label for="rawContent">Paroles et Accords (Format Ligne par Ligne)</label>
-                    <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 0;">
-                        Place ton curseur dans la zone de texte et clique sur les accords à droite pour les insérer entre crochets au bon endroit.
-                    </p>
-                    <textarea id="rawContent" rows="14" placeholder="[Am]               [C]
-On a two-lane highway, listening to the radio..."></textarea>
+                    <textarea id="rawContent" rows="12" placeholder="[Am]               [C]
+On a two-lane highway..."></textarea>
                 </div>
 
                 <div class="actions">
-                    <button class="btn btn-success" onclick="addSong()">Ajouter à la liste</button>
+                    <button id="cancelEditBtn" class="btn" style="background-color: #475569; display:none;" onclick="resetForm()">Annuler</button>
+                    <button class="btn btn-success" id="saveBtn" onclick="saveSong()">Ajouter à la liste</button>
+                </div>
+            </div>
+
+            <!-- Gestion de la bibliothèque actuelle -->
+            <div class="card">
+                <h2>📚 Répertoire actuel des chansons</h2>
+                <p style="font-size: 0.9rem; color: #94a3b8;">Modifie ou supprime des chansons directement ici avant de télécharger le fichier.</p>
+                <div class="songs-table" id="songsTableContainer">
+                    <p style="color: #94a3b8; text-align: center;">Aucune chanson chargée.</p>
                 </div>
             </div>
 
             <div class="card">
-                <h2>Fichier de données (`songs.json`)</h2>
-                <p style="font-size: 0.9rem; color: #94a3b8;">
-                    Voici le code de ton fichier global. Clique pour télécharger la dernière version mise à jour.
-                </p>
+                <h2>💾 Fichier de données (`songs.json`)</h2>
                 <div class="form-group">
-                    <textarea id="jsonOutput" rows="6" readonly style="font-size: 0.8rem;"></textarea>
+                    <textarea id="jsonOutput" rows="5" readonly style="font-size: 0.8rem;"></textarea>
                 </div>
                 <div class="actions">
-                    <button class="btn" onclick="downloadJSON()">Télécharger songs.json</button>
+                    <button class="btn" onclick="downloadJSON()">Télécharger songs.json mis à jour</button>
                 </div>
             </div>
         </div>
@@ -222,7 +248,6 @@ On a two-lane highway, listening to the radio..."></textarea>
         <!-- Colonne Latérale : Palette d'accords -->
         <div class="chords-sidebar">
             <h3>🎸 Palette d'Accords</h3>
-            
             <div class="chord-section-title">Majeurs</div>
             <div class="chords-grid">
                 <button class="chord-btn" onclick="insertChord('C')">C</button>
@@ -284,64 +309,121 @@ On a two-lane highway, listening to the radio..."></textarea>
         } catch (e) {
             songsData = [];
         }
-        updateJSONOutput();
+        refreshUI();
     }
 
-    // Fonction magique pour insérer l'accord pile à l'endroit du curseur
     function insertChord(chordName) {
         const textarea = document.getElementById('rawContent');
         const startPos = textarea.selectionStart;
         const endPos = textarea.selectionEnd;
         const text = textarea.value;
-
         const chordFormatted = `[${chordName}]`;
 
-        // Insère l'accord entre crochets à la position exacte du curseur
         textarea.value = text.substring(0, startPos) + chordFormatted + text.substring(endPos, text.length);
-        
-        // Replace le curseur juste après l'accord inséré pour continuer à taper
         textarea.selectionStart = textarea.selectionEnd = startPos + chordFormatted.length;
         textarea.focus();
     }
 
-    function addSong() {
+    function saveSong() {
         const title = document.getElementById('title').value.trim();
         const artist = document.getElementById('artist').value.trim();
         const style = document.getElementById('style').value.trim();
         const lang = document.getElementById('lang').value;
         const rawContent = document.getElementById('rawContent').value;
+        const editingIndex = parseInt(document.getElementById('editingIndex').value);
 
         if (!title || !artist || !rawContent) {
             alert("Veuillez remplir au minimum le titre, l'artiste et les paroles.");
             return;
         }
 
-        const lines = rawContent.split('\n');
-        const formattedLines = [];
+        const lines = rawContent.split('\n').map(l => ({ text: l }));
 
-        for (let i = 0; i < lines.length; i++) {
-            formattedLines.push({ text: lines[i] });
-        }
-
-        const newSong = {
+        const songObject = {
             title,
             artist,
             style: style || 'Pop',
             lang,
-            lines: formattedLines
+            lines
         };
 
-        songsData.push(newSong);
-        updateJSONOutput();
+        if (editingIndex === -1) {
+            songsData.push(songObject);
+        } else {
+            songsData[editingIndex] = songObject;
+            resetForm();
+        }
 
+        refreshUI();
         document.getElementById('title').value = '';
         document.getElementById('artist').value = '';
+        document.getElementById('style').value = '';
         document.getElementById('rawContent').value = '';
-        alert("Chanson ajoutée avec succès ! N'oublie pas de télécharger le fichier songs.json en bas.");
+        alert("Enregistré avec succès ! Pense à télécharger le fichier songs.json en bas.");
+    }
+
+    function refreshUI() {
+        updateJSONOutput();
+        renderSongsTable();
     }
 
     function updateJSONOutput() {
         document.getElementById('jsonOutput').value = JSON.stringify(songsData, null, 2);
+    }
+
+    function renderSongsTable() {
+        const container = document.getElementById('songsTableContainer');
+        if (songsData.length === 0) {
+            container.innerHTML = '<p style="color: #94a3b8; text-align: center;">Aucune chanson dans la base.</p>';
+            return;
+        }
+
+        container.innerHTML = songsData.map((song, index) => `
+            <div class="song-row-item">
+                <div class="song-meta">
+                    <h4>${song.title}</h4>
+                    <p>${song.artist} • <i>${song.style}</i> • [${song.lang}]</p>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <button class="btn btn-warning" onclick="editSong(${index})">Modifier</button>
+                    <button class="btn btn-danger" onclick="deleteSong(${index})">Supprimer</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function editSong(index) {
+        const song = songsData[index];
+        document.getElementById('title').value = song.title;
+        document.getElementById('artist').value = song.artist;
+        document.getElementById('style').value = song.style;
+        document.getElementById('lang').value = song.lang;
+        document.getElementById('rawContent').value = song.lines.map(l => l.text).join('\n');
+        
+        document.getElementById('editingIndex').value = index;
+        document.getElementById('formTitle').innerText = `Modifier : ${song.title}`;
+        document.getElementById('saveBtn').innerText = "Mettre à jour";
+        document.getElementById('cancelEditBtn').style.display = "inline-block";
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function deleteSong(index) {
+        if (confirm(`Voulez-vous vraiment supprimer "${songsData[index].title}" ?`)) {
+            songsData.splice(index, 1);
+            refreshUI();
+            resetForm();
+        }
+    }
+
+    function resetForm() {
+        document.getElementById('editingIndex').value = "-1";
+        document.getElementById('formTitle').innerText = "Ajouter une nouvelle chanson";
+        document.getElementById('saveBtn').innerText = "Ajouter à la liste";
+        document.getElementById('cancelEditBtn').style.display = "none";
+        document.getElementById('title').value = '';
+        document.getElementById('artist').value = '';
+        document.getElementById('style').value = '';
+        document.getElementById('rawContent').value = '';
     }
 
     function downloadJSON() {
