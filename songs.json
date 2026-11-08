@@ -1,288 +1,438 @@
 [
   {
-    "title": "Holiday",
-    "artist": "Green Day",
+    "title": "Let it Be",
+    "artist": "The Beatles",
     "style": "Rock",
     "lang": "EN",
     "lines": [
-      {
-        "text": "[Em] Hear the [C] sound of the falling [D]rain"
-      },
-      {
-        "text": "[Em] Coming [C]down like an [G]Armage[B]ddon [Em]flame (hey!)"
-      },
-      {
-        "text": "The shame, the ones who died without a name"
-      },
-      {
-        "text": "Hear the dogs howling out of key"
-      },
-      {
-        "text": "To a hymn called \"Faith and Misery\" (hey!)"
-      },
-      {
-        "text": "And bleed, the company lost the war today, and"
-      },
-      {
-        "text": "chorus"
-      },
-      {
-        "text": "Oh I beg to dream and differ from the hollow lies"
-      },
-      {
-        "text": "This is the dawning of the rest of our lives (whoa, oh, whoa, oh)"
-      },
-      {
-        "text": "On holiday!"
-      },
-      {
-        "text": "verse"
-      },
-      {
-        "text": "Hear the drum pounding out of time"
-      },
-      {
-        "text": "Another protester has crossed the line (hey!)"
-      },
-      {
-        "text": "To find the money′s on the other side"
-      },
-      {
-        "text": "Can I get another amen? (Amen!)"
-      },
-      {
-        "text": "There's a flag wrapped around a score of men (hey!)"
-      },
-      {
-        "text": "A gag, a plastic bag on a monument"
-      },
-      {
-        "text": "chorus"
-      },
-      {
-        "text": "Oh I beg to dream and differ from the hollow lies"
-      },
-      {
-        "text": "This is the dawning of the rest of our lives (whoa, oh, whoa, oh)"
-      },
-      {
-        "text": "On holiday!"
-      },
-      {
-        "text": "bridge"
-      },
-      {
-        "text": "Hey!"
-      },
-      {
-        "text": "Three, four!"
-      },
-      {
-        "text": "The representative from California has the floor"
-      },
-      {
-        "text": "\"Sieg Heil\" to the president Gasman"
-      },
-      {
-        "text": "Bombs away is your punishment"
-      },
-      {
-        "text": "Pulverize the Eiffel towers"
-      },
-      {
-        "text": "Who criticize your government"
-      },
-      {
-        "text": "\"Bang! Bang!\" goes the broken glass, and"
-      },
-      {
-        "text": "Kill all the fags that don′t agree"
-      },
-      {
-        "text": "Try to fight fire, setting fire"
-      },
-      {
-        "text": "Is not a way that's meant for me"
-      },
-      {
-        "text": "Just 'cause (hey! Hey! Hey! Hey!)"
-      },
-      {
-        "text": "Just ′cause, because we′re outlaws, yeah (hey! Hey! Hey! Hey!)"
-      },
-      {
-        "text": "chorus"
-      },
-      {
-        "text": "Oh I beg to dream and differ from the hollow lies"
-      },
-      {
-        "text": "This is the dawning of the rest of our lives (whoa, oh, whoa, oh)"
-      },
-      {
-        "text": "I beg to dream and differ from the hollow lies"
-      },
-      {
-        "text": "This is the dawning of the rest of our lives (whoa, oh, whoa, oh)"
-      },
-      {
-        "text": "This is our lives on holiday!"
-      }
+      { "text": "When I find myself in times of trouble" },
+      { "text": "Mother Mary comes to me" },
+      { "text": "Speaking words of wisdom, [C]let it [G]be" },
+      { "text": "And in my hour of darkness" },
+      { "text": "She is standing right in front of me" },
+      { "text": "Speaking words of wisdom, let it be" },
+      { "text": "Let it be, let it be" },
+      { "text": "Let it be, let it be" },
+      { "text": "Whisper words of wisdom, let it be" },
+      { "text": "And when the broken-hearted people" },
+      { "text": "Living in the world agree" },
+      { "text": "There will be an answer, let it be" },
+      { "text": "For though they may be parted" },
+      { "text": "There is still a chance that they will see" },
+      { "text": "There will be an answer, let it be" },
+      { "text": "Let it be, let it be" },
+      { "text": "Let it be, let it be" },
+      { "text": "Yeah, there will be an answer, let it be" },
+      { "text": "Let it be, let it be" },
+      { "text": "Let it be, let it be" },
+      { "text": "Whisper words of wisdom, let it be" },
+      { "text": "Let it be, let it be" },
+      { "text": "Let it be, yeah, let it be" },
+      { "text": "Whisper words of wisdom, let it be" },
+      { "text": "And when the night is cloudy" },
+      { "text": "There is still a light that shines on me" },
+      { "text": "Shine on until tomorrow, let it be" },
+      { "text": "I wake up to the sound of music" },
+      { "text": "Mother Mary comes to me" },
+      { "text": "Speaking words of wisdom, let it be" },
+      { "text": "Let it be, let it be" },
+      { "text": "Let it be, yeah, let it be" },
+      { "text": "Oh, there will be an answer, let it be" },
+      { "text": "Let it be, let it be" },
+      { "text": "Let it be, yeah, let it be" },
+      { "text": "There will be an answer, let it be" }
+    ]
+  },
+  {
+    "title": "J'ai demandé à la lune",
+    "artist": "Indochine",
+    "style": "Pop Rock",
+    "lang": "FR",
+    "lines": [
+      { "text": "J'ai demandé à la lune" },
+      { "text": "Et le soleil ne le sait pas" },
+      { "text": "Je lui ai montré mes brûlures" },
+      { "text": "Et la lune s'est moquée de moi" },
+      { "text": "Et comme le ciel n'avait pas fière allure" },
+      { "text": "Et que je ne guérissais pas" },
+      { "text": "Je me suis dit quelle infortune" },
+      { "text": "Et la lune s'est moquée de moi" },
+      { "text": "J'ai demandé à la lune" },
+      { "text": "Si tu voulais encore de moi" },
+      { "text": "Elle m'a dit \"J'ai pas l'habitude" },
+      { "text": "De m'occuper des cas comme ça\"" },
+      { "text": "Et toi et moi" },
+      { "text": "On était tellement sûr" },
+      { "text": "Et on se disait quelques fois" },
+      { "text": "Que c'était juste une aventure" },
+      { "text": "Et que ça ne durerait pas" },
+      { "text": "Je n'ai pas grand chose à te dire" },
+      { "text": "Et pas grand chose pour te faire rire" },
+      { "text": "Car j'imagine toujours le pire" },
+      { "text": "Et le meilleur me fait souffrir" }
+    ]
+  },
+  {
+    "title": "Je l'aime à mourir",
+    "artist": "Francis Cabrel",
+    "style": "Variété / Folk",
+    "lang": "FR",
+    "lines": [
+      { "text": "Moi je n'étais rien" },
+      { "text": "Et voilà qu'aujourd'hui" },
+      { "text": "Je suis le gardien" },
+      { "text": "Du sommeil de ses nuits" },
+      { "text": "Je l'aime à mourir" },
+      { "text": "Vous pouvez détruire" },
+      { "text": "Tout ce qu'il vous plaira" },
+      { "text": "Elle n'a qu'à ouvrir" },
+      { "text": "L'espace de ses bras" },
+      { "text": "Pour tout reconstruire" },
+      { "text": "Je l'aime à mourir" },
+      { "text": "Elle a gommé les chiffres" },
+      { "text": "Des horloges du quartier" },
+      { "text": "Elle a fait de ma vie" },
+      { "text": "Des cocottes en papier" },
+      { "text": "Des éclats de rire" }
+    ]
+  },
+  {
+    "title": "Petite Marie",
+    "artist": "Francis Cabrel",
+    "style": "Variété / Folk",
+    "lang": "FR",
+    "lines": [
+      { "text": "Petite Marie, je parle de toi" },
+      { "text": "Parce qu'avec ta petite voix" },
+      { "text": "Tes petites manies, tu as versé sur ma vie" },
+      { "text": "Des milliers de roses" },
+      { "text": "Petite furie, je me bats pour toi" },
+      { "text": "Pour que dans dix mille ans de ça" },
+      { "text": "On se retrouve à l'abri, sous un ciel aussi joli" },
+      { "text": "Que des milliers de roses" },
+      { "text": "Je viens du ciel et les étoiles entr' elles" },
+      { "text": "Ne parlent que de toi" },
+      { "text": "D'un musicien qui fait jouer ses mains" },
+      { "text": "Sur un morceau de bois" }
+    ]
+  },
+  {
+    "title": "Stand By Me",
+    "artist": "Ben E. King",
+    "style": "Soul / Pop",
+    "lang": "EN",
+    "lines": [
+      { "text": "When the night has come" },
+      { "text": "And the land is dark" },
+      { "text": "And the moon is the only light we'll see" },
+      { "text": "No I won't be afraid" },
+      { "text": "Oh, I won't be afraid" },
+      { "text": "Just as long as you stand, stand by me" },
+      { "text": "So darlin', darlin', stand by me" },
+      { "text": "Oh, stand by me" },
+      { "text": "Stand by me, stand by me" }
+    ]
+  },
+  {
+    "title": "Je te promets",
+    "artist": "Johnny Hallyday",
+    "style": "Rock / Variété",
+    "lang": "FR",
+    "lines": [
+      { "text": "Je te promets le sel au baiser de ma bouche" },
+      { "text": "Je te promets le miel à ma main qui te touche" },
+      { "text": "Je te promets le ciel au dessus de ta couche" },
+      { "text": "Des fleurs et des dentelles pour que tes nuits soient douces" },
+      { "text": "Je te promets la clé des secrets de mon âme" },
+      { "text": "Je te promets la vie de mes rires à mes larmes" },
+      { "text": "Je te promets le feu à la place des armes" },
+      { "text": "Plus jamais des adieux rien que des au-revoirs" }
+    ]
+  },
+  {
+    "title": "Simple Man",
+    "artist": "Lynyrd Skynyrd",
+    "style": "Rock",
+    "lang": "EN",
+    "lines": [
+      { "text": "Mama told me when I was young" },
+      { "text": "\"Come sit beside me, my only son" },
+      { "text": "And listen closely to what I say" },
+      { "text": "And if you do this it'll help you" },
+      { "text": "Some sunny day\"" },
+      { "text": "Oh, take your time, don't live too fast" },
+      { "text": "Troubles will come and they will pass" },
+      { "text": "And be a simple kind of man" }
+    ]
+  },
+  {
+    "title": "Sound of Silence",
+    "artist": "Disturbed",
+    "style": "Rock",
+    "lang": "EN",
+    "lines": [
+      { "text": "Hello darkness, my old friend" },
+      { "text": "I've come to talk with you again" },
+      { "text": "Because a vision softly creeping" },
+      { "text": "Left its seeds while I was sleeping" },
+      { "text": "And the vision that was planted in my brain" },
+      { "text": "Still remains" },
+      { "text": "Within the sound of silence" }
+    ]
+  },
+  {
+    "title": "House of the Rising Sun",
+    "artist": "The Animals",
+    "style": "Rock",
+    "lang": "EN",
+    "lines": [
+      { "text": "There is a house down in New Orleans" },
+      { "text": "They call the Risin' Sun" },
+      { "text": "And it's been the ruin of many poor girl" },
+      { "text": "And me, oh God, I'm one" },
+      { "text": "My mother was a tailor" },
+      { "text": "She sewed these new blue jeans" }
+    ]
+  },
+  {
+    "title": "Le Pénitencier",
+    "artist": "Johnny Hallyday",
+    "style": "Rock",
+    "lang": "FR",
+    "lines": [
+      { "text": "1-Les portes du pénitencier" },
+      { "text": "Bientôt vont se fermer" },
+      { "text": "Et c'est là que je finirai ma vie" },
+      { "text": "Comm'd'autres gars l'ont finie" },
+      { "text": "2-Pour moi ma mère a donné" },
+      { "text": "Sa robe de mariée" }
+    ]
+  },
+  {
+    "title": "Nothing Else Matters",
+    "artist": "Metallica",
+    "style": "Metal / Rock",
+    "lang": "EN",
+    "lines": [
+      { "text": "So close, no matter how far" },
+      { "text": "Couldn't be much more from the heart" },
+      { "text": "Forever trusting who we are" },
+      { "text": "And nothing else matters" },
+      { "text": "Never opened myself this way" },
+      { "text": "Life is ours, we live it our way" }
+    ]
+  },
+  {
+    "title": "Sweet Home Alabama",
+    "artist": "Lynyrd Skynyrd",
+    "style": "Rock",
+    "lang": "EN",
+    "lines": [
+      { "text": "Big wheels keep on turnin'" },
+      { "text": "Carry me home to see my kin" },
+      { "text": "Singin' songs about the Southland" },
+      { "text": "I miss Alabamy once again, and I think it's a sin, yes" },
+      { "text": "Sweet home, Alabama" },
+      { "text": "Where the skies are so blue" }
+    ]
+  },
+  {
+    "title": "L'aventurier",
+    "artist": "Indochine",
+    "style": "Pop Rock",
+    "lang": "FR",
+    "lines": [
+      { "text": "Égaré dans la vallée infernale" },
+      { "text": "Le héros s'appelle Bob Morane" },
+      { "text": "À la recherche de l'Ombre Jaune" },
+      { "text": "Le bandit s'appelle mister Kali Jones" },
+      { "text": "Et soudain surgit face au vent" },
+      { "text": "Le vrai héros de tous les temps" }
+    ]
+  },
+  {
+    "title": "3 nuits par semaine",
+    "artist": "Indochine",
+    "style": "Pop Rock",
+    "lang": "FR",
+    "lines": [
+      { "text": "Dans la nuit de Rebecca" },
+      { "text": "que la légende parti-ra" },
+      { "text": "et aujourd'hui pour une troisième fois" },
+      { "text": "elle décidait de sa première fois" },
+      { "text": "Mais 3 Nuits Par Semaine" },
+      { "text": "c'est sa peau contre ma peau" }
+    ]
+  },
+  {
+    "title": "Dirty Old Town",
+    "artist": "The Pogues",
+    "style": "Folk Rock",
+    "lang": "EN",
+    "lines": [
+      { "text": "I met my love by the gas works wall" },
+      { "text": "Dreamed a dream by the old canal" },
+      { "text": "I kissed my girl by the factory wall" },
+      { "text": "Dirty old town" }
+    ]
+  },
+  {
+    "title": "Heart of Gold",
+    "artist": "Neil Young",
+    "style": "Folk Rock",
+    "lang": "EN",
+    "lines": [
+      { "text": "I want to live" },
+      { "text": "I want to give" },
+      { "text": "I've been a miner" },
+      { "text": "For a heart of gold" },
+      { "text": "It's these expressions" },
+      { "text": "I never give" }
+    ]
+  },
+  {
+    "title": "Hotel California",
+    "artist": "Eagles",
+    "style": "Rock",
+    "lang": "EN",
+    "lines": [
+      { "text": "On a dark desert highway, cool wind in my hair" },
+      { "text": "Warm smell of colitas rising up through the air" },
+      { "text": "Up ahead in the distance, I saw a shimmering light" },
+      { "text": "Welcome to the Hotel California" },
+      { "text": "Such a lovely place" }
+    ]
+  },
+  {
+    "title": "Take Me Home, Country Roads",
+    "artist": "John Denver",
+    "style": "Folk / Country",
+    "lang": "EN",
+    "lines": [
+      { "text": "Almost heaven, West Virginia" },
+      { "text": "Blue ridge mountains, Shenandoah river" },
+      { "text": "Life is old there, older than the trees" },
+      { "text": "Country roads, take me home" },
+      { "text": "To the place I belong" }
+    ]
+  },
+  {
+    "title": "Another Brick in the Wall",
+    "artist": "Pink Floyd",
+    "style": "Rock",
+    "lang": "EN",
+    "lines": [
+      { "text": "We don't need no education" },
+      { "text": "We don't need no thought control" },
+      { "text": "No dark sarcasm in the classroom" },
+      { "text": "Teacher, leave them kids alone" },
+      { "text": "All in all it's just another brick in the wall" }
+    ]
+  },
+  {
+    "title": "With or Without You",
+    "artist": "U2",
+    "style": "Rock",
+    "lang": "EN",
+    "lines": [
+      { "text": "See the stone set in your eyes" },
+      { "text": "See the thorn twist in your side" },
+      { "text": "I wait for you" },
+      { "text": "With or without you" }
     ]
   },
   {
     "title": "Californication",
-    "artist": "RHCP",
+    "artist": "Red Hot Chili Peppers",
     "style": "Rock",
     "lang": "EN",
     "lines": [
-      {
-        "text": "[Am]Psychic spies from China "
-      },
-      {
-        "text": "try to [F]steal your mind's elation "
-      },
-      {
-        "text": "And [Am]little girls from Sweden "
-      },
-      {
-        "text": "dream of [F]silver screen quotation"
-      },
-      {
-        "text": "And [C]if you want these [G]kind of dreams it's [F]Californi[Dm]cation"
-      },
-      {
-        "text": ""
-      },
-      {
-        "text": "[Am][F][Am][F]"
-      },
-      {
-        "text": ""
-      },
-      {
-        "text": "[Am]It's the edge of the world and all of [F]Western civilization"
-      },
-      {
-        "text": "The[Am] sun may rise in the East, at least it [F]settled in a final location"
-      },
-      {
-        "text": "It's [C]understood that [G]Hollywood sells [F]Californi[Dm]cation"
-      },
-      {
-        "text": ""
-      },
-      {
-        "text": "[Am][F7][Am][F7]"
-      },
-      {
-        "text": ""
-      },
-      {
-        "text": "[Am]Pay your surgeon very well to [F7]break the spell of aging"
-      },
-      {
-        "text": "[Am]Celebrity skin, is this your chin, or is [F7]that war you're waging?"
-      },
-      {
-        "text": "[Am]First born uni[F7]corn"
-      },
-      {
-        "text": "[Am]Hardcore soft [F7]porn"
-      },
-      {
-        "text": ""
-      },
-      {
-        "text": "[C]Dream of Cali[G]fornica[Dm]ti[Am]on"
-      },
-      {
-        "text": "[C]Dream of Cali[G]fornica[Dm]ti[Am]on"
-      },
-      {
-        "text": "[C]Dream of Cali[G]fornica[Dm]ti[Am]on"
-      },
-      {
-        "text": "[C]Dream of Cali[G]fornica[Dm]ti[Am]on"
-      },
-      {
-        "text": ""
-      },
-      {
-        "text": "Marry me, girl, be my fairy to the world, be my very own constellation"
-      },
-      {
-        "text": "A teenage bride with a baby inside getting high on information"
-      },
-      {
-        "text": "And buy me a star on the boulevard, it's Californication"
-      },
-      {
-        "text": "Space may be the final frontier, but it's made in a Hollywood basement"
-      },
-      {
-        "text": "And Cobain, can you hear the spheres singing songs off Station To Station?"
-      },
-      {
-        "text": "And Alderaan's not far away, it's Californication"
-      },
-      {
-        "text": "Born and raised by those who praise control of population"
-      },
-      {
-        "text": "Well, everybody's been there and I don't mean on vacation"
-      },
-      {
-        "text": "First born unicorn"
-      },
-      {
-        "text": "Hardcore soft porn"
-      },
-      {
-        "text": "Dream of Californication"
-      },
-      {
-        "text": "Dream of Californication"
-      },
-      {
-        "text": "Dream of Californication"
-      },
-      {
-        "text": "Dream of Californication"
-      },
-      {
-        "text": "Destruction leads to a very rough road, but it also breeds creation"
-      },
-      {
-        "text": "And earthquakes are to a girl's guitar, they're just another good vibration"
-      },
-      {
-        "text": "And tidal waves couldn't save the world from Californication"
-      },
-      {
-        "text": "Pay your surgeon very well to break the spell of aging"
-      },
-      {
-        "text": "Sicker than the rest, there is no test, but this is what you're craving"
-      },
-      {
-        "text": "First born unicorn"
-      },
-      {
-        "text": "Hardcore soft porn"
-      },
-      {
-        "text": "Dream of Californication"
-      },
-      {
-        "text": "Dream of Californication"
-      },
-      {
-        "text": "Dream of Californication"
-      },
-      {
-        "text": "Dream of Californication"
-      }
+      { "text": "Psychic spies from China try to steal your mind's elation" },
+      { "text": "And little girls from Sweden dream of silver screen quotation" },
+      { "text": "Dream of Californication" }
+    ]
+  },
+  {
+    "title": "L'Envie",
+    "artist": "Johnny Hallyday",
+    "style": "Rock / Variété",
+    "lang": "FR",
+    "lines": [
+      { "text": "Qu'on me donne l'obscurité puis la lumière" },
+      { "text": "Qu'on me donne la faim, la soif puis un festin" },
+      { "text": "Qu'on m'enlève ce qui est vain et secondaire" },
+      { "text": "Qu'on me donne l'envie" },
+      { "text": "L'envie d'avoir envie" }
+    ]
+  },
+  {
+    "title": "Highway to Hell",
+    "artist": "AC/DC",
+    "style": "Hard Rock",
+    "lang": "EN",
+    "lines": [
+      { "text": "Livin' easy, lovin' free" },
+      { "text": "Season ticket on a one-way ride" },
+      { "text": "Askin' nothin', leave me be" },
+      { "text": "I'm on the highway to hell" }
+    ]
+  },
+  {
+    "title": "Seven Nation Army",
+    "artist": "The White Stripes",
+    "style": "Rock",
+    "lang": "EN",
+    "lines": [
+      { "text": "I'm gonna fight 'em off" },
+      { "text": "A seven-nation army couldn't hold me back" },
+      { "text": "They're gonna rip it off" },
+      { "text": "Taking their time right behind my back" }
+    ]
+  },
+  {
+    "title": "Johnny B. Goode",
+    "artist": "Chuck Berry",
+    "style": "Rock / Roll",
+    "lang": "EN",
+    "lines": [
+      { "text": "Deep down in Louisiana, close to New Orleans" },
+      { "text": "Way back up in the woods among the evergreens" },
+      { "text": "Go, go" },
+      { "text": "Go, Johnny, go, go" }
+    ]
+  },
+  {
+    "title": "Il suffira d'un signe",
+    "artist": "Jean-Jacques Goldman",
+    "style": "Variété / Rock",
+    "lang": "FR",
+    "lines": [
+      { "text": "Il suffira d'un signe, un matin" },
+      { "text": "Un matin tout tranquille et serein" },
+      { "text": "Quelque chose d'infime, c'est certain" },
+      { "text": "C'est écrit dans nos livres, en latin" }
+    ]
+  },
+  {
+    "title": "Rock Around the Clock",
+    "artist": "Bill Haley & His Comets",
+    "style": "Rock",
+    "lang": "EN",
+    "lines": [
+      { "text": "One, two, three o'clock, four o'clock, rock" },
+      { "text": "Five, six, seven o'clock, eight o'clock, rock" },
+      { "text": "We're gonna rock around the clock tonight" }
+    ]
+  },
+  {
+    "title": "Satisfaction",
+    "artist": "The Rolling Stones",
+    "style": "Rock",
+    "lang": "EN",
+    "lines": [
+      { "text": "I can't get no satisfaction" },
+      { "text": "I can't get no satisfaction" },
+      { "text": "'Cause I try, and I try, and I try, and I try" }
     ]
   }
 ]
