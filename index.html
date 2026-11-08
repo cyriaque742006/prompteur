@@ -108,7 +108,6 @@
 </div>
 
 <script>
-    // Chargement fictif pour tester l'affichage en local
     let songs = [];
 
     async function loadSongs() {
@@ -135,15 +134,19 @@
             return;
         }
 
-        list.innerHTML = songsToDisplay.map((song, index) => `
-            <div class="song-card" onclick="window.location.href='prompter.html?id=${index}'">
-                <div class="song-info">
-                    <h3>${song.title}</h3>
-                    <p>${song.artist} • <i>${song.style || 'Pop'}</i> • [${song.lang || 'FR'}]</p>
+        list.innerHTML = songsToDisplay.map((song) => {
+            // On récupère le vrai index de la chanson dans le tableau général `songs` d'origine
+            const originalIndex = songs.indexOf(song);
+            return `
+                <div class="song-card" onclick="window.location.href='prompter.html?id=${originalIndex}'">
+                    <div class="song-info">
+                        <h3>${song.title}</h3>
+                        <p>${song.artist} • <i>${song.style || 'Pop'}</i> • [${song.lang || 'FR'}]</p>
+                    </div>
+                    <span class="btn" style="padding: 6px 12px; font-size: 0.9rem;">Chanter ▶</span>
                 </div>
-                <span class="btn" style="padding: 6px 12px; font-size: 0.9rem;">Chanter ▶</span>
-            </div>
-        `).join('');
+            `;
+        }).join('');
     }
 
     function populateFilters(data) {
