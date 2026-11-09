@@ -2,7 +2,7 @@
   {
     "title": "Let it Be",
     "artist": "The Beatles",
-    "style": "Rock",
+    "style": "Pop / Variété",
     "lang": "EN",
     "lines": [
       {
@@ -118,7 +118,7 @@
   {
     "title": "J'ai demandé à la lune",
     "artist": "Indochine",
-    "style": "Pop Rock",
+    "style": "Pop / Variété",
     "lang": "FR",
     "lines": [
       {
@@ -189,7 +189,7 @@
   {
     "title": "Je l'aime à mourir",
     "artist": "Francis Cabrel",
-    "style": "Variété / Folk",
+    "style": "Pop / Variété",
     "lang": "FR",
     "lines": [
       {
@@ -245,7 +245,7 @@
   {
     "title": "Petite Marie",
     "artist": "Francis Cabrel",
-    "style": "Variété / Folk",
+    "style": "Pop / Variété",
     "lang": "FR",
     "lines": [
       {
@@ -289,7 +289,7 @@
   {
     "title": "Stand By Me",
     "artist": "Ben E. King",
-    "style": "Soul / Pop",
+    "style": "Blues / Soul / Jazz",
     "lang": "EN",
     "lines": [
       {
@@ -324,7 +324,7 @@
   {
     "title": "Je te promets",
     "artist": "Johnny Hallyday",
-    "style": "Rock / Variété",
+    "style": "Pop / Variété",
     "lang": "FR",
     "lines": [
       {
@@ -356,7 +356,7 @@
   {
     "title": "Simple Man",
     "artist": "Lynyrd Skynyrd",
-    "style": "Rock",
+    "style": "Rock / Hard Rock",
     "lang": "EN",
     "lines": [
       {
@@ -388,7 +388,7 @@
   {
     "title": "Sound of Silence",
     "artist": "Disturbed",
-    "style": "Rock",
+    "style": "Folk / Country / Acoustique",
     "lang": "EN",
     "lines": [
       {
@@ -417,7 +417,7 @@
   {
     "title": "House of the Rising Sun",
     "artist": "The Animals",
-    "style": "Rock",
+    "style": "Blues / Soul / Jazz",
     "lang": "EN",
     "lines": [
       {
@@ -538,7 +538,7 @@
   {
     "title": "Nothing Else Matters",
     "artist": "Metallica",
-    "style": "Metal / Rock",
+    "style": "Rock / Hard Rock",
     "lang": "EN",
     "lines": [
       {
@@ -695,7 +695,7 @@
   {
     "title": "L'aventurier",
     "artist": "Indochine",
-    "style": "Pop Rock",
+    "style": "Pop / Variété",
     "lang": "FR",
     "lines": [
       {
@@ -721,7 +721,7 @@
   {
     "title": "3 nuits par semaine",
     "artist": "Indochine",
-    "style": "Pop Rock",
+    "style": "Pop / Variété",
     "lang": "FR",
     "lines": [
       {
@@ -747,7 +747,7 @@
   {
     "title": "Dirty Old Town",
     "artist": "The Pogues",
-    "style": "Folk Rock",
+    "style": "Folk / Country / Acoustique",
     "lang": "EN",
     "lines": [
       {
@@ -767,7 +767,7 @@
   {
     "title": "Heart of Gold",
     "artist": "Neil Young",
-    "style": "Folk Rock",
+    "style": "Blues / Soul / Jazz",
     "lang": "EN",
     "lines": [
       {
@@ -793,7 +793,7 @@
   {
     "title": "Hotel California",
     "artist": "Eagles",
-    "style": "Rock",
+    "style": "Rock / Hard Rock",
     "lang": "EN",
     "lines": [
       {
@@ -839,7 +839,7 @@
   {
     "title": "Another Brick in the Wall",
     "artist": "Pink Floyd",
-    "style": "Rock",
+    "style": "Rock / Hard Rock",
     "lang": "EN",
     "lines": [
       {
@@ -919,7 +919,7 @@
   {
     "title": "With or Without You",
     "artist": "U2",
-    "style": "Rock",
+    "style": "Rock / Hard Rock",
     "lang": "EN",
     "lines": [
       {
@@ -1094,7 +1094,7 @@
   {
     "title": "L'Envie",
     "artist": "Johnny Hallyday",
-    "style": "Rock / Variété",
+    "style": "Pop / Variété",
     "lang": "FR",
     "lines": [
       {
@@ -1137,7 +1137,7 @@
   {
     "title": "Seven Nation Army",
     "artist": "The White Stripes",
-    "style": "Rock",
+    "style": "Rock / Hard Rock",
     "lang": "EN",
     "lines": [
       {
@@ -1157,7 +1157,7 @@
   {
     "title": "Johnny B. Goode",
     "artist": "Chuck Berry",
-    "style": "Rock / Roll",
+    "style": "Rock / Hard Rock",
     "lang": "EN",
     "lines": [
       {
@@ -1177,7 +1177,7 @@
   {
     "title": "Il suffira d'un signe",
     "artist": "Jean-Jacques Goldman",
-    "style": "Variété / Rock",
+    "style": "Pop / Variété",
     "lang": "FR",
     "lines": [
       {
@@ -1197,7 +1197,7 @@
   {
     "title": "Rock Around the Clock",
     "artist": "Bill Haley & His Comets",
-    "style": "Rock",
+    "style": "Rock / Hard Rock",
     "lang": "EN",
     "lines": [
       {
@@ -1214,7 +1214,7 @@
   {
     "title": "Satisfaction",
     "artist": "The Rolling Stones",
-    "style": "Rock",
+    "style": "Rock / Hard Rock",
     "lang": "EN",
     "lines": [
       {
@@ -1392,7 +1392,7 @@
   {
     "title": "Money",
     "artist": "The Warnings",
-    "style": "Rock",
+    "style": "Rock / Hard Rock",
     "lang": "EN",
     "lines": [
       {
