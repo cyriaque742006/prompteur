@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prompteur P34 - Administration</title>
+    <title>Prompteur P34</title>
     <style>
         :root {
             --bg-color: #0f172a;
@@ -12,10 +12,6 @@
             --accent-color: #38bdf8;
             --accent-hover: #0ea5e9;
             --border-color: #334155;
-            --success-color: #22c55e;
-            --danger-color: #ef4444;
-            --chord-bg: #334155;
-            --chord-hover: #475569;
         }
         body {
             font-family: system-ui, -apple-system, sans-serif;
@@ -28,7 +24,7 @@
         }
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 800px;
         }
         header {
             display: flex;
@@ -51,362 +47,131 @@
             display: inline-block;
         }
         .btn:hover { background-color: var(--accent-hover); }
-        .btn-success { background-color: var(--success-color); color: white; }
-        .btn-danger { background-color: var(--danger-color); color: white; padding: 6px 12px; font-size: 0.85rem; }
-        .btn-warning { background-color: #f59e0b; color: white; padding: 6px 12px; font-size: 0.85rem; }
-        
-        .admin-layout {
-            display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 20px;
-            align-items: start;
-        }
-
-        .form-group {
+        .filters {
+            display: flex;
+            gap: 10px;
             margin-bottom: 1.5rem;
+            flex-wrap: wrap;
         }
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-            color: #cbd5e1;
-        }
-        input, select, textarea {
-            width: 100%;
+        input, select {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             color: var(--text-color);
             padding: 10px;
             border-radius: 6px;
-            box-sizing: border-box;
-            font-family: inherit;
-        }
-        textarea {
-            font-family: monospace;
-            white-space: pre;
-            line-height: 1.6;
-        }
-        .row {
-            display: flex;
-            gap: 15px;
-        }
-        .row .form-group {
             flex: 1;
+            min-width: 150px;
         }
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-        }
-        .actions {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-            align-items: center;
-        }
-
-        /* Classement par Artistes et sous-catégories */
+        
+        /* Structure de classement par Artistes et sous-catégories */
         .artist-group {
             margin-bottom: 15px;
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            background-color: #0f172a;
+            background-color: var(--card-bg);
             overflow: hidden;
         }
         .artist-header {
-            background-color: #1e293b;
-            padding: 10px 15px;
+            background-color: #273548;
+            padding: 12px 18px;
             font-weight: bold;
             color: var(--accent-color);
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             border-bottom: 1px solid var(--border-color);
         }
         .songs-sublist {
             display: flex;
             flex-direction: column;
         }
-        .song-sub-item {
+        .song-card {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 14px 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 15px;
-            border-bottom: 1px solid #1e293b;
+            cursor: pointer;
+            transition: background-color 0.2s;
         }
-        .song-sub-item:last-child {
+        .song-card:last-child {
             border-bottom: none;
         }
-        .song-meta h4 { margin: 0 0 2px 0; font-size: 0.95rem; }
-        .song-meta p { margin: 0; font-size: 0.75rem; color: #94a3b8; }
-
-        /* Panneau latéral des accords */
-        .chords-sidebar {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 15px;
-            border-radius: 8px;
-            position: sticky;
-            top: 20px;
-        }
-        .chords-sidebar h3 {
-            margin-top: 0;
-            font-size: 1.1rem;
-            color: var(--accent-color);
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 8px;
-        }
-        .chord-section-title {
-            font-size: 0.8rem;
-            color: #94a3b8;
-            margin: 10px 0 5px 0;
-            text-transform: uppercase;
-        }
-        .chords-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 6px;
-        }
-        .chord-btn {
-            background-color: var(--chord-bg);
-            color: var(--text-color);
-            border: 1px solid var(--border-color);
-            padding: 8px 4px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 0.85rem;
-            cursor: pointer;
-            text-align: center;
-        }
-        .chord-btn:hover {
-            background-color: var(--chord-hover);
-            border-color: var(--accent-color);
-        }
+        .song-card:hover { background-color: #2a3952; }
+        .song-info h3 { margin: 0 0 3px 0; font-size: 1.05rem; }
+        .song-info p { margin: 0; font-size: 0.8rem; color: #94a3b8; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <h1>🎵 Prompteur P34 - Administration</h1>
-        <a href="index.html" class="btn">← Retour au Prompteur</a>
+        <h1>🎵 Prompteur P34</h1>
+        <a href="admin.html" class="btn">Mode Édition / Admin</a>
     </header>
 
-    <div class="admin-layout">
-        <!-- Colonne Principale -->
-        <div>
-            <div class="card">
-                <h2 id="formTitle">Ajouter une nouvelle chanson</h2>
-                <input type="hidden" id="editingIndex" value="-1">
-                
-                <div class="row">
-                    <div class="form-group">
-                        <label for="title">Titre de la chanson</label>
-                        <input type="text" id="title" placeholder="Ex: Hotel California">
-                    </div>
-                    <div class="form-group">
-                        <label for="artist">Artiste / Groupe</label>
-                        <input type="text" id="artist" placeholder="Ex: Eagles">
-                    </div>
-                </div>
+    <div class="filters">
+        <input type="text" id="searchInput" placeholder="Rechercher une chanson ou un artiste...">
+        <select id="styleFilter">
+            <option value="">Tous les styles</option>
+        </select>
+        <select id="langFilter">
+            <option value="">Toutes les langues</option>
+        </select>
+    </div>
 
-                <div class="row">
-                    <div class="form-group">
-                        <label for="style">Style / Genre</label>
-                        <input type="text" id="style" placeholder="Ex: Rock, Folk...">
-                    </div>
-                    <div class="form-group">
-                        <label for="lang">Langue</label>
-                        <select id="lang">
-                            <option value="FR">Français</option>
-                            <option value="EN">Anglais</option>
-                            <option value="ES">Espagnol</option>
-                            <option value="AUTRE">Autre</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="rawContent">Paroles et Accords (Format Ligne par Ligne)</label>
-                    <textarea id="rawContent" rows="12" placeholder="[Am]               [C]
-On a two-lane highway..."></textarea>
-                </div>
-
-                <div class="actions">
-                    <button id="cancelEditBtn" class="btn" style="background-color: #475569; display:none;" onclick="resetForm()">Annuler</button>
-                    <button class="btn btn-success" id="saveBtn" onclick="saveSong()">Ajouter à la liste</button>
-                </div>
-            </div>
-
-            <!-- Répertoire classé par Artistes et sous-catégories (Titres) -->
-            <div class="card">
-                <h2>📚 Répertoire actuel (Classé par Artistes)</h2>
-                <p style="font-size: 0.9rem; color: #94a3b8;">Les artistes forment les catégories, et chaque chanson apparaît en sous-catégorie.</p>
-                <div id="songsTreeContainer">
-                    <p style="color: #94a3b8; text-align: center;">Aucune chanson chargée.</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2>💾 Fichier de données (`songs.json`)</h2>
-                <div class="form-group">
-                    <textarea id="jsonOutput" rows="5" readonly style="font-size: 0.8rem;"></textarea>
-                </div>
-                <div class="actions">
-                    <button class="btn" onclick="downloadJSON()">Télécharger songs.json mis à jour</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Colonne Latérale : Palette d'accords -->
-        <div class="chords-sidebar">
-            <h3>🎸 Palette d'Accords</h3>
-            <div class="chord-section-title">Majeurs</div>
-            <div class="chords-grid">
-                <button class="chord-btn" onclick="insertChord('C')">C</button>
-                <button class="chord-btn" onclick="insertChord('D')">D</button>
-                <button class="chord-btn" onclick="insertChord('E')">E</button>
-                <button class="chord-btn" onclick="insertChord('F')">F</button>
-                <button class="chord-btn" onclick="insertChord('G')">G</button>
-                <button class="chord-btn" onclick="insertChord('A')">A</button>
-                <button class="chord-btn" onclick="insertChord('B')">B</button>
-            </div>
-
-            <div class="chord-section-title">Mineurs</div>
-            <div class="chords-grid">
-                <button class="chord-btn" onclick="insertChord('Am')">Am</button>
-                <button class="chord-btn" onclick="insertChord('Bm')">Bm</button>
-                <button class="chord-btn" onclick="insertChord('Cm')">Cm</button>
-                <button class="chord-btn" onclick="insertChord('Dm')">Dm</button>
-                <button class="chord-btn" onclick="insertChord('Em')">Em</button>
-                <button class="chord-btn" onclick="insertChord('Fm')">Fm</button>
-                <button class="chord-btn" onclick="insertChord('Gm')">Gm</button>
-            </div>
-
-            <div class="chord-section-title">Septièmes (7)</div>
-            <div class="chords-grid">
-                <button class="chord-btn" onclick="insertChord('C7')">C7</button>
-                <button class="chord-btn" onclick="insertChord('D7')">D7</button>
-                <button class="chord-btn" onclick="insertChord('E7')">E7</button>
-                <button class="chord-btn" onclick="insertChord('F7')">F7</button>
-                <button class="chord-btn" onclick="insertChord('G7')">G7</button>
-                <button class="chord-btn" onclick="insertChord('A7')">A7</button>
-                <button class="chord-btn" onclick="insertChord('B7')">B7</button>
-                <button class="chord-btn" onclick="insertChord('Am7')">Am7</button>
-                <button class="chord-btn" onclick="insertChord('Dm7')">Dm7</button>
-                <button class="chord-btn" onclick="insertChord('Em7')">Em7</button>
-            </div>
-
-            <div class="chord-section-title">Autres / Sus / Maj7</div>
-            <div class="chords-grid">
-                <button class="chord-btn" onclick="insertChord('F#m')">F#m</button>
-                <button class="chord-btn" onclick="insertChord('C#m')">C#m</button>
-                <button class="chord-btn" onclick="insertChord('Bb')">Bb</button>
-                <button class="chord-btn" onclick="insertChord('Eb')">Eb</button>
-                <button class="chord-btn" onclick="insertChord('Sus4')">Sus4</button>
-                <button class="chord-btn" onclick="insertChord('Maj7')">Maj7</button>
-            </div>
-        </div>
+    <div class="song-list" id="songList">
+        <!-- Les chansons s'afficheront ici dynamiquement -->
+        <p style="color: #94a3b8; text-align: center;">Chargement des chansons...</p>
     </div>
 </div>
 
 <script>
-    let songsData = [];
+    let songs = [];
 
-    async function initAdmin() {
+    async function loadSongs() {
         try {
-            const res = await fetch('songs.json');
-            if (res.ok) {
-                songsData = await res.json();
-            }
+            const response = await fetch('songs.json');
+            if (!response.ok) throw new Error("Fichier songs.json introuvable");
+            songs = await response.json();
+            
+            // On associe chaque chanson à son index d'origine AVANT de trier
+            songs = songs.map((song, originalIndex) => ({ ...song, originalIndex }));
+
+            displaySongs(songs);
+            populateFilters(songs);
         } catch (e) {
-            songsData = [];
+            document.getElementById('songList').innerHTML = `
+                <div style="background-color: #1e293b; padding: 20px; border-radius: 8px; text-align: center; border: 1px dashed #334155;">
+                    <p style="margin-bottom: 10px;">Aucune chanson trouvée ou fichier <b>songs.json</b> manquant.</p>
+                    <a href="admin.html" class="btn">Créer mes premières chansons</a>
+                </div>
+            `;
         }
-        refreshUI();
     }
 
-    function insertChord(chordName) {
-        const textarea = document.getElementById('rawContent');
-        const startPos = textarea.selectionStart;
-        const endPos = textarea.selectionEnd;
-        const text = textarea.value;
-        const chordFormatted = `[${chordName}]`;
-
-        textarea.value = text.substring(0, startPos) + chordFormatted + text.substring(endPos, text.length);
-        textarea.selectionStart = textarea.selectionEnd = startPos + chordFormatted.length;
-        textarea.focus();
-    }
-
-    function saveSong() {
-        const title = document.getElementById('title').value.trim();
-        const artist = document.getElementById('artist').value.trim();
-        const style = document.getElementById('style').value.trim();
-        const lang = document.getElementById('lang').value;
-        const rawContent = document.getElementById('rawContent').value;
-        const editingIndex = parseInt(document.getElementById('editingIndex').value);
-
-        if (!title || !artist || !rawContent) {
-            alert("Veuillez remplir au minimum le titre, l'artiste et les paroles.");
+    function displaySongs(songsToDisplay) {
+        const list = document.getElementById('songList');
+        if (songsToDisplay.length === 0) {
+            list.innerHTML = '<p style="text-align: center; color: #94a3b8;">Aucune chanson ne correspond à vos critères.</p>';
             return;
         }
 
-        const lines = rawContent.split('\n').map(l => ({ text: l }));
+        // Tri principal par Artiste (alphabétique)
+        const sortedSongs = [...songsToDisplay].sort((a, b) => {
+            const artistCompare = a.artist.localeCompare(b.artist, 'fr', { sensitivity: 'base' });
+            if (artistCompare !== 0) return artistCompare;
+            return a.title.localeCompare(b.title, 'fr', { sensitivity: 'base' });
+        });
 
-        const songObject = {
-            title,
-            artist,
-            style: style || 'Pop',
-            lang,
-            lines
-        };
-
-        if (editingIndex === -1) {
-            songsData.push(songObject);
-        } else {
-            songsData[editingIndex] = songObject;
-            resetForm();
-        }
-
-        refreshUI();
-        document.getElementById('title').value = '';
-        document.getElementById('artist').value = '';
-        document.getElementById('style').value = '';
-        document.getElementById('rawContent').value = '';
-        alert("Enregistré avec succès ! Pense à télécharger le fichier songs.json en bas.");
-    }
-
-    function refreshUI() {
-        updateJSONOutput();
-        renderSongsTree();
-    }
-
-    function updateJSONOutput() {
-        document.getElementById('jsonOutput').value = JSON.stringify(songsData, null, 2);
-    }
-
-    function renderSongsTree() {
-        const container = document.getElementById('songsTreeContainer');
-        if (songsData.length === 0) {
-            container.innerHTML = '<p style="color: #94a3b8; text-align: center;">Aucune chanson dans la base.</p>';
-            return;
-        }
-
-        // On associe chaque chanson à son index d'origine pour ne pas perdre la référence lors de l'édition/suppression
-        const indexedSongs = songsData.map((song, index) => ({ ...song, originalIndex: index }));
-
-        // Tri des artistes par ordre alphabétique
-        indexedSongs.sort((a, b) => a.artist.localeCompare(b.artist, 'fr', { sensitivity: 'base' }));
-
-        // Regroupement par artiste
+        // Regroupement par artiste pour l'affichage en sous-catégories
         const groupedByArtist = {};
-        indexedSongs.forEach(song => {
+        sortedSongs.forEach(song => {
             if (!groupedByArtist[song.artist]) {
                 groupedByArtist[song.artist] = [];
             }
             groupedByArtist[song.artist].push(song);
         });
 
-        // Génération du HTML avec les artistes en catégories et les titres en sous-catégories
         let html = '';
         for (const [artist, artistSongs] of Object.entries(groupedByArtist)) {
             // Tri des chansons de l'artiste par titre alphabétique
@@ -420,15 +185,12 @@ On a two-lane highway..."></textarea>
 
             artistSongs.forEach(song => {
                 html += `
-                    <div class="song-sub-item">
-                        <div class="song-meta">
-                            <h4>🎵 ${song.title}</h4>
-                            <p><i>${song.style}</i> • [${song.lang}]</p>
+                    <div class="song-card" onclick="window.location.href='prompter.html?id=${song.originalIndex}'">
+                        <div class="song-info">
+                            <h3>🎵 ${song.title}</h3>
+                            <p><i>${song.style || 'Pop'}</i> • [${song.lang || 'FR'}]</p>
                         </div>
-                        <div style="display: flex; gap: 8px;">
-                            <button class="btn btn-warning" onclick="editSong(${song.originalIndex})">Modifier</button>
-                            <button class="btn btn-danger" onclick="deleteSong(${song.originalIndex})">Supprimer</button>
-                        </div>
+                        <span class="btn" style="padding: 6px 12px; font-size: 0.85rem;">Chanter ▶</span>
                     </div>
                 `;
             });
@@ -439,54 +201,41 @@ On a two-lane highway..."></textarea>
             `;
         }
 
-        container.innerHTML = html;
+        list.innerHTML = html;
     }
 
-    function editSong(index) {
-        const song = songsData[index];
-        document.getElementById('title').value = song.title;
-        document.getElementById('artist').value = song.artist;
-        document.getElementById('style').value = song.style;
-        document.getElementById('lang').value = song.lang;
-        document.getElementById('rawContent').value = song.lines.map(l => l.text).join('\n');
-        
-        document.getElementById('editingIndex').value = index;
-        document.getElementById('formTitle').innerText = `Modifier : ${song.title}`;
-        document.getElementById('saveBtn').innerText = "Mettre à jour";
-        document.getElementById('cancelEditBtn').style.display = "inline-block";
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    function populateFilters(data) {
+        const styles = [...new Set(data.map(s => s.style).filter(Boolean))].sort();
+        const langs = [...new Set(data.map(s => s.lang).filter(Boolean))].sort();
+
+        const styleSelect = document.getElementById('styleFilter');
+        styles.forEach(s => styleSelect.innerHTML += `<option value="${s}">${s}</option>`);
+
+        const langSelect = document.getElementById('langFilter');
+        langs.forEach(l => langSelect.innerHTML += `<option value="${l}">${l}</option>`);
     }
 
-    function deleteSong(index) {
-        if (confirm(`Voulez-vous vraiment supprimer "${songsData[index].title}" de ${songsData[index].artist} ?`)) {
-            songsData.splice(index, 1);
-            refreshUI();
-            resetForm();
-        }
+    // Filtrage dynamique
+    document.getElementById('searchInput').addEventListener('input', filterSongs);
+    document.getElementById('styleFilter').addEventListener('change', filterSongs);
+    document.getElementById('langFilter').addEventListener('change', filterSongs);
+
+    function filterSongs() {
+        const search = document.getElementById('searchInput').value.toLowerCase();
+        const style = document.getElementById('styleFilter').value;
+        const lang = document.getElementById('langFilter').value;
+
+        const filtered = songs.filter(s => {
+            const matchSearch = (s.title + ' ' + s.artist).toLowerCase().includes(search);
+            const matchStyle = !style || s.style === style;
+            const matchLang = !lang || s.lang === lang;
+            return matchSearch && matchStyle && matchLang;
+        });
+
+        displaySongs(filtered);
     }
 
-    function resetForm() {
-        document.getElementById('editingIndex').value = "-1";
-        document.getElementById('formTitle').innerText = "Ajouter une nouvelle chanson";
-        document.getElementById('saveBtn').innerText = "Ajouter à la liste";
-        document.getElementById('cancelEditBtn').style.display = "none";
-        document.getElementById('title').value = '';
-        document.getElementById('artist').value = '';
-        document.getElementById('style').value = '';
-        document.getElementById('rawContent').value = '';
-    }
-
-    function downloadJSON() {
-        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(document.getElementById('jsonOutput').value);
-        const downloadAnchor = document.createElement('a');
-        downloadAnchor.setAttribute("href", dataStr);
-        downloadAnchor.setAttribute("download", "songs.json");
-        document.body.appendChild(downloadAnchor);
-        downloadAnchor.click();
-        downloadAnchor.remove();
-    }
-
-    initAdmin();
+    loadSongs();
 </script>
 
 </body>
