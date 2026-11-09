@@ -107,6 +107,34 @@
             align-items: center;
         }
 
+        /* Boutons de sélection de style */
+        .style-buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+        .style-btn {
+            background-color: var(--chord-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .style-btn:hover {
+            background-color: var(--chord-hover);
+            border-color: var(--accent-color);
+        }
+        .style-btn.selected {
+            background-color: var(--accent-color);
+            color: #0f172a;
+            border-color: var(--accent-color);
+        }
+
         /* Classement par Artistes et sous-catégories */
         .artist-group {
             margin-bottom: 15px;
@@ -212,8 +240,16 @@
 
                 <div class="row">
                     <div class="form-group">
-                        <label for="style">Style / Genre</label>
-                        <input type="text" id="style" placeholder="Ex: Rock, Folk...">
+                        <label>Style / Genre (Sélection)</label>
+                        <input type="hidden" id="style" value="Rock / Hard Rock">
+                        <div class="style-buttons-grid">
+                            <button type="button" class="style-btn selected" onclick="selectStyle(this, 'Rock / Hard Rock')">Rock / Hard Rock</button>
+                            <button type="button" class="style-btn" onclick="selectStyle(this, 'Pop / Variété')">Pop / Variété</button>
+                            <button type="button" class="style-btn" onclick="selectStyle(this, 'Folk / Country / Acoustique')">Folk / Country</button>
+                            <button type="button" class="style-btn" onclick="selectStyle(this, 'Blues / Soul / Jazz')">Blues / Soul</button>
+                            <button type="button" class="style-btn" onclick="selectStyle(this, 'Metal')">Metal</button>
+                            <button type="button" class="style-btn" onclick="selectStyle(this, 'Autre')">Autre</button>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="lang">Langue</label>
@@ -238,10 +274,9 @@ On a two-lane highway..."></textarea>
                 </div>
             </div>
 
-            <!-- Répertoire classé par Artistes et sous-catégories (Titres) -->
+            <!-- Répertoire classé par Artistes et sous-catégories -->
             <div class="card">
                 <h2>📚 Répertoire actuel (Classé par Artistes)</h2>
-                <p style="font-size: 0.9rem; color: #94a3b8;">Les artistes forment les catégories, et chaque chanson apparaît en sous-catégorie.</p>
                 <div id="songsTreeContainer">
                     <p style="color: #94a3b8; text-align: center;">Aucune chanson chargée.</p>
                 </div>
@@ -325,6 +360,12 @@ On a two-lane highway..."></textarea>
         refreshUI();
     }
 
+    function selectStyle(btnElement, styleName) {
+        document.getElementById('style').value = styleName;
+        document.querySelectorAll('.style-btn').forEach(btn => btn.classList.remove('selected'));
+        btnElement.classList.add('selected');
+    }
+
     function insertChord(chordName) {
         const textarea = document.getElementById('rawContent');
         const startPos = textarea.selectionStart;
@@ -340,7 +381,7 @@ On a two-lane highway..."></textarea>
     function saveSong() {
         const title = document.getElementById('title').value.trim();
         const artist = document.getElementById('artist').value.trim();
-        const style = document.getElementById('style').value.trim();
+        const style = document.getElementById('style').value;
         const lang = document.getElementById('lang').value;
         const rawContent = document.getElementById('rawContent').value;
         const editingIndex = parseInt(document.getElementById('editingIndex').value);
@@ -355,7 +396,7 @@ On a two-lane highway..."></textarea>
         const songObject = {
             title,
             artist,
-            style: style || 'Pop',
+            style,
             lang,
             lines
         };
@@ -370,7 +411,6 @@ On a two-lane highway..."></textarea>
         refreshUI();
         document.getElementById('title').value = '';
         document.getElementById('artist').value = '';
-        document.getElementById('style').value = '';
         document.getElementById('rawContent').value = '';
         alert("Enregistré avec succès ! Pense à télécharger le fichier songs.json en bas.");
     }
@@ -391,13 +431,9 @@ On a two-lane highway..."></textarea>
             return;
         }
 
-        // On associe chaque chanson à son index d'origine pour ne pas perdre la référence lors de l'édition/suppression
         const indexedSongs = songsData.map((song, index) => ({ ...song, originalIndex: index }));
-
-        // Tri des artistes par ordre alphabétique
         indexedSongs.sort((a, b) => a.artist.localeCompare(b.artist, 'fr', { sensitivity: 'base' }));
 
-        // Regroupement par artiste
         const groupedByArtist = {};
         indexedSongs.forEach(song => {
             if (!groupedByArtist[song.artist]) {
@@ -406,10 +442,8 @@ On a two-lane highway..."></textarea>
             groupedByArtist[song.artist].push(song);
         });
 
-        // Génération du HTML avec les artistes en catégories et les titres en sous-catégories
         let html = '';
         for (const [artist, artistSongs] of Object.entries(groupedByArtist)) {
-            // Tri des chansons de l'artiste par titre alphabétique
             artistSongs.sort((a, b) => a.title.localeCompare(b.title, 'fr', { sensitivity: 'base' }));
 
             html += `
@@ -446,7 +480,17 @@ On a two-lane highway..."></textarea>
         const song = songsData[index];
         document.getElementById('title').value = song.title;
         document.getElementById('artist').value = song.artist;
-        document.getElementById('style').value = song.style;
+        document.getElementById('style').value = song.style || 'Rock / Hard Rock';
+        
+        // Sélectionner le bon bouton de style visuellement
+        document.querySelectorAll('.style-btn').forEach(btn => {
+            if (btn.innerText.trim() === song.style) {
+                btn.classList.add('selected');
+            } else {
+                btn.classList.remove('selected');
+            }
+        });
+
         document.getElementById('lang').value = song.lang;
         document.getElementById('rawContent').value = song.lines.map(l => l.text).join('\n');
         
@@ -472,7 +516,6 @@ On a two-lane highway..."></textarea>
         document.getElementById('cancelEditBtn').style.display = "none";
         document.getElementById('title').value = '';
         document.getElementById('artist').value = '';
-        document.getElementById('style').value = '';
         document.getElementById('rawContent').value = '';
     }
 
