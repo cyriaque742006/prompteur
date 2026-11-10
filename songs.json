@@ -1773,7 +1773,7 @@
         "text": ""
       },
       {
-        "text": "<b>Oh, frères du port"
+        "text": "Oh, frères du port"
       },
       {
         "text": "Nos yeux, toujours, chercheront"
@@ -1782,7 +1782,7 @@
         "text": "Les fleurs lancées par-dessus bord"
       },
       {
-        "text": "Recouvrant l'écume d'ajoncs</b>"
+        "text": "Recouvrant l'écume d'ajoncs"
       },
       {
         "text": ""
@@ -1803,7 +1803,7 @@
         "text": ""
       },
       {
-        "text": "<b>Oh, frères du port"
+        "text": "Oh, frères du port"
       },
       {
         "text": "Nos yeux, toujours, chercheront"
@@ -1812,7 +1812,7 @@
         "text": "Les fleurs lancées par-dessus bord"
       },
       {
-        "text": "Recouvrant l'écume d'ajoncs</b>"
+        "text": "Recouvrant l'écume d'ajoncs"
       },
       {
         "text": ""
@@ -1833,7 +1833,7 @@
         "text": ""
       },
       {
-        "text": "<b>Oh, frères du port"
+        "text": "Oh, frères du port"
       },
       {
         "text": "Nos yeux, toujours, chercheront"
@@ -1842,13 +1842,7 @@
         "text": "Les fleurs lancées par-dessus bord"
       },
       {
-        "text": "Recouvrant l'écume d'ajoncs</b>"
-      },
-      {
-        "text": ""
-      },
-      {
-        "text": "[Solo]"
+        "text": "Recouvrant l'écume d'ajoncs"
       },
       {
         "text": ""
@@ -1869,7 +1863,129 @@
         "text": ""
       },
       {
-        "text": "<b>Refrain X 4</b>"
+        "text": "Refrain X 4"
+      }
+    ]
+  },
+  {
+    "title": "L'âme du vin",
+    "artist": "FTP",
+    "style": "Pop / Variété",
+    "lang": "FR",
+    "lines": [
+      {
+        "text": "[Am]                       [F]"
+      },
+      {
+        "text": "Un soir l’âme du vin chantait dans les bouteilles"
+      },
+      {
+        "text": "         [C]                  [G]        [E]"
+      },
+      {
+        "text": "Homme vers toi je pousse, ô cher déshérité,"
+      },
+      {
+        "text": "       [Am]                       [F]"
+      },
+      {
+        "text": "Sous ma prison de verre et mes cires vermeilles"
+      },
+      {
+        "text": "            [C]C                    [G][E]        [Am]      [G]"
+      },
+      {
+        "text": "Un chant plein de lumière et de fraternité"
+      },
+      {
+        "text": " "
+      },
+      {
+        "text": "   [C]                        [G]"
+      },
+      {
+        "text": "Je sais combien il faut sur la colline en flamme"
+      },
+      {
+        "text": "        [Dm]                   [Am]                [E]"
+      },
+      {
+        "text": "De peines et de sueurs et de soleils cuisants"
+      },
+      {
+        "text": "        [C]                        [G]"
+      },
+      {
+        "text": "Pour engendrer ma vie et pour me donner l’âme"
+      },
+      {
+        "text": "         [Dm]                  [Am]    [E]    [Am]"
+      },
+      {
+        "text": "Mais je ne serai point ingrat et malfaisant"
+      },
+      {
+        "text": " "
+      },
+      {
+        "text": "Car j’éprouve une joie immense quand je tombe"
+      },
+      {
+        "text": "Dans le gosier d’un homme, usé par ses travaux"
+      },
+      {
+        "text": "Et sa chaude poitrine est une douce tombe"
+      },
+      {
+        "text": "Où je me plais bien mieux que dans les froids caveaux"
+      },
+      {
+        "text": " "
+      },
+      {
+        "text": "Entends-tu retentir les refrains des dimanches"
+      },
+      {
+        "text": "Et l’espoir qui gazouille en mon sein palpitant"
+      },
+      {
+        "text": "Les coudes sur la table et retroussant tes manches"
+      },
+      {
+        "text": "Tu me glorifieras et tu seras content"
+      },
+      {
+        "text": " "
+      },
+      {
+        "text": "J’allumerai les yeux de ta femme ravie"
+      },
+      {
+        "text": "A ton fils je rendrai, sa force et ses couleurs"
+      },
+      {
+        "text": "Et serai pour ce frêle athlète de la vie"
+      },
+      {
+        "text": "L’huile qui raffermit les muscles des lutteurs"
+      },
+      {
+        "text": " "
+      },
+      {
+        "text": "En toi je comblerai, végétale ambroisie"
+      },
+      {
+        "text": "Grain précieux semé par l’éternel semeur"
+      },
+      {
+        "text": "Pour que de notre amour naisse la poésie"
+      },
+      {
+        "text": "Qui jaillira vers Dieu comme une rare fleur"
+      },
+      {
+        "text": ""
       }
     ]
   }
