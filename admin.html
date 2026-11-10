@@ -168,7 +168,7 @@
         .song-meta h4 { margin: 0 0 2px 0; font-size: 0.95rem; }
         .song-meta p { margin: 0; font-size: 0.75rem; color: #94a3b8; }
 
-        /* Panneau latéral des accords */
+        /* Panneau latéral des accords et mise en forme */
         .chords-sidebar {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -207,6 +207,26 @@
             text-align: center;
         }
         .chord-btn:hover {
+            background-color: var(--chord-hover);
+            border-color: var(--accent-color);
+        }
+        .format-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+        }
+        .format-btn {
+            background-color: #273548;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-align: center;
+        }
+        .format-btn:hover {
             background-color: var(--chord-hover);
             border-color: var(--accent-color);
         }
@@ -288,13 +308,21 @@ On a two-lane highway..."></textarea>
                     <textarea id="jsonOutput" rows="5" readonly style="font-size: 0.8rem;"></textarea>
                 </div>
                 <div class="actions">
+                    <button class="btn" onclick="copyJSONToClipboard()" style="background-color: #f59e0b; color: white;">Copier le JSON</button>
                     <button class="btn" onclick="downloadJSON()">Télécharger songs.json mis à jour</button>
                 </div>
             </div>
         </div>
 
-        <!-- Colonne Latérale : Palette d'accords -->
+        <!-- Colonne Latérale : Accords & Mise en forme -->
         <div class="chords-sidebar">
+            <h3>✨ Mise en forme</h3>
+            <div class="chord-section-title">Texte (Refrains...)</div>
+            <div class="format-grid">
+                <button class="format-btn" onclick="insertTag('b')"><b>Gras (b)</b></button>
+                <button class="format-btn" onclick="insertTag('i')"><i>Italique (i)</i></button>
+            </div>
+
             <h3>🎸 Palette d'Accords</h3>
             <div class="chord-section-title">Majeurs</div>
             <div class="chords-grid">
@@ -336,7 +364,7 @@ On a two-lane highway..."></textarea>
             <div class="chords-grid">
                 <button class="chord-btn" onclick="insertChord('F#m')">F#m</button>
                 <button class="chord-btn" onclick="insertChord('C#m')">C#m</button>
-                <button class="chord-btn" onclick="insertChord('Bb')">Bb</button>
+                <button class="chord-btn" onclick="insertChord('Bb')../button>
                 <button class="chord-btn" onclick="insertChord('Eb')">Eb</button>
                 <button class="chord-btn" onclick="insertChord('Sus4')">Sus4</button>
                 <button class="chord-btn" onclick="insertChord('Maj7')">Maj7</button>
@@ -378,6 +406,20 @@ On a two-lane highway..."></textarea>
         textarea.focus();
     }
 
+    function insertTag(tagName) {
+        const textarea = document.getElementById('rawContent');
+        const startPos = textarea.selectionStart;
+        const endPos = textarea.selectionEnd;
+        const text = textarea.value;
+        const selectedText = text.substring(startPos, endPos);
+        const formatted = `<${tagName}>${selectedText || 'texte'}</${tagName}>`;
+
+        textarea.value = text.substring(0, startPos) + formatted + text.substring(endPos, text.length);
+        textarea.selectionStart = startPos + tagName.length + 2;
+        textarea.selectionEnd = textarea.selectionStart + (selectedText ? selectedText.length : 5);
+        textarea.focus();
+    }
+
     function saveSong() {
         const title = document.getElementById('title').value.trim();
         const artist = document.getElementById('artist').value.trim();
@@ -412,7 +454,7 @@ On a two-lane highway..."></textarea>
         document.getElementById('title').value = '';
         document.getElementById('artist').value = '';
         document.getElementById('rawContent').value = '';
-        alert("Enregistré avec succès ! Pense à télécharger le fichier songs.json en bas.");
+        alert("Enregistré avec succès ! Pense à copier ou télécharger le fichier songs.json.");
     }
 
     function refreshUI() {
@@ -482,7 +524,6 @@ On a two-lane highway..."></textarea>
         document.getElementById('artist').value = song.artist;
         document.getElementById('style').value = song.style || 'Rock / Hard Rock';
         
-        // Sélectionner le bon bouton de style visuellement
         document.querySelectorAll('.style-btn').forEach(btn => {
             if (btn.innerText.trim() === song.style) {
                 btn.classList.add('selected');
@@ -517,6 +558,15 @@ On a two-lane highway..."></textarea>
         document.getElementById('title').value = '';
         document.getElementById('artist').value = '';
         document.getElementById('rawContent').value = '';
+    }
+
+    function copyJSONToClipboard() {
+        const jsonText = document.getElementById('jsonOutput').value;
+        navigator.clipboard.writeText(jsonText).then(() => {
+            alert("Code JSON copié dans le presse-papier !");
+        }).catch(err => {
+            alert("Erreur lors de la copie : " + err);
+        });
     }
 
     function downloadJSON() {
