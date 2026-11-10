@@ -1773,7 +1773,7 @@
         "text": ""
       },
       {
-        "text": "Oh, frères du port"
+        "text": "<b>Oh, frères du port"
       },
       {
         "text": "Nos yeux, toujours, chercheront"
@@ -1782,7 +1782,7 @@
         "text": "Les fleurs lancées par-dessus bord"
       },
       {
-        "text": "Recouvrant l'écume d'ajoncs"
+        "text": "Recouvrant l'écume d'ajoncs</b>"
       },
       {
         "text": ""
@@ -1803,7 +1803,7 @@
         "text": ""
       },
       {
-        "text": "Oh, frères du port"
+        "text": "<b>Oh, frères du port"
       },
       {
         "text": "Nos yeux, toujours, chercheront"
@@ -1812,7 +1812,7 @@
         "text": "Les fleurs lancées par-dessus bord"
       },
       {
-        "text": "Recouvrant l'écume d'ajoncs"
+        "text": "Recouvrant l'écume d'ajoncs</b>"
       },
       {
         "text": ""
@@ -1833,7 +1833,7 @@
         "text": ""
       },
       {
-        "text": "Oh, frères du port"
+        "text": "<b>Oh, frères du port"
       },
       {
         "text": "Nos yeux, toujours, chercheront"
@@ -1842,7 +1842,13 @@
         "text": "Les fleurs lancées par-dessus bord"
       },
       {
-        "text": "Recouvrant l'écume d'ajoncs"
+        "text": "Recouvrant l'écume d'ajoncs</b>"
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": "[Solo]"
       },
       {
         "text": ""
@@ -1863,129 +1869,132 @@
         "text": ""
       },
       {
-        "text": "Refrain X 4"
+        "text": "<b>Refrain X 4</b>"
       }
     ]
   },
   {
-    "title": "L'âme du vin",
-    "artist": "FTP",
-    "style": "Pop / Variété",
-    "lang": "FR",
+    "title": "Sultan of swings",
+    "artist": "Dire straits",
+    "style": "Rock / Hard Rock",
+    "lang": "EN",
     "lines": [
       {
-        "text": "[Am]                       [F]"
+        "text": "You get a shiver in the dark"
       },
       {
-        "text": "Un soir l’âme du vin chantait dans les bouteilles"
+        "text": "It's raining in the park but meantime"
       },
       {
-        "text": "         [C]                  [G]        [E]"
+        "text": "South of the river, you stop and you hold everything"
       },
       {
-        "text": "Homme vers toi je pousse, ô cher déshérité,"
+        "text": "A band is blowing Dixie, double-four time"
       },
       {
-        "text": "       [Am]                       [F]"
-      },
-      {
-        "text": "Sous ma prison de verre et mes cires vermeilles"
-      },
-      {
-        "text": "            [C]C                    [G][E]        [Am]      [G]"
-      },
-      {
-        "text": "Un chant plein de lumière et de fraternité"
-      },
-      {
-        "text": " "
-      },
-      {
-        "text": "   [C]                        [G]"
-      },
-      {
-        "text": "Je sais combien il faut sur la colline en flamme"
-      },
-      {
-        "text": "        [Dm]                   [Am]                [E]"
-      },
-      {
-        "text": "De peines et de sueurs et de soleils cuisants"
-      },
-      {
-        "text": "        [C]                        [G]"
-      },
-      {
-        "text": "Pour engendrer ma vie et pour me donner l’âme"
-      },
-      {
-        "text": "         [Dm]                  [Am]    [E]    [Am]"
-      },
-      {
-        "text": "Mais je ne serai point ingrat et malfaisant"
-      },
-      {
-        "text": " "
-      },
-      {
-        "text": "Car j’éprouve une joie immense quand je tombe"
-      },
-      {
-        "text": "Dans le gosier d’un homme, usé par ses travaux"
-      },
-      {
-        "text": "Et sa chaude poitrine est une douce tombe"
-      },
-      {
-        "text": "Où je me plais bien mieux que dans les froids caveaux"
-      },
-      {
-        "text": " "
-      },
-      {
-        "text": "Entends-tu retentir les refrains des dimanches"
-      },
-      {
-        "text": "Et l’espoir qui gazouille en mon sein palpitant"
-      },
-      {
-        "text": "Les coudes sur la table et retroussant tes manches"
-      },
-      {
-        "text": "Tu me glorifieras et tu seras content"
-      },
-      {
-        "text": " "
-      },
-      {
-        "text": "J’allumerai les yeux de ta femme ravie"
-      },
-      {
-        "text": "A ton fils je rendrai, sa force et ses couleurs"
-      },
-      {
-        "text": "Et serai pour ce frêle athlète de la vie"
-      },
-      {
-        "text": "L’huile qui raffermit les muscles des lutteurs"
-      },
-      {
-        "text": " "
-      },
-      {
-        "text": "En toi je comblerai, végétale ambroisie"
-      },
-      {
-        "text": "Grain précieux semé par l’éternel semeur"
-      },
-      {
-        "text": "Pour que de notre amour naisse la poésie"
-      },
-      {
-        "text": "Qui jaillira vers Dieu comme une rare fleur"
+        "text": "You feel alright when you hear the music ring"
       },
       {
         "text": ""
+      },
+      {
+        "text": "Well, now you step inside, but you don't see too many faces"
+      },
+      {
+        "text": "Coming in out of the rain, they hear the jazz go down"
+      },
+      {
+        "text": "Competition in other places"
+      },
+      {
+        "text": "Uh, but the horns they blowin' that sound"
+      },
+      {
+        "text": "Way on down south"
+      },
+      {
+        "text": "Way on down south, London town"
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": "You check out guitar George, he knows all the chords"
+      },
+      {
+        "text": "Mind, it's strictly rhythm, he doesn't want to make it cry or sing"
+      },
+      {
+        "text": "They said an old guitar is all he can afford"
+      },
+      {
+        "text": "When he gets up under the lights to play his thing"
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": "And Harry doesn't mind if he doesn't make the scene"
+      },
+      {
+        "text": "He's got a daytime job, he's doing alright"
+      },
+      {
+        "text": "He can play the honky-tonk like anything"
+      },
+      {
+        "text": "Savin' it up for Friday night"
+      },
+      {
+        "text": "With the Sultans"
+      },
+      {
+        "text": "We're the Sultans of Swing"
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": "Then a crowd of young boys, they're foolin' around in the corner"
+      },
+      {
+        "text": "Drunk and dressed in their best, brown baggies and their platform soles"
+      },
+      {
+        "text": "They don't give a damn about any trumpet playin' band"
+      },
+      {
+        "text": "It ain't what they call rock and roll"
+      },
+      {
+        "text": "And the Sultans"
+      },
+      {
+        "text": "Yeah, the Sultans, they play Creole, Creole"
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": "And then the man, he steps right up to the microphone"
+      },
+      {
+        "text": "And says at last, just as the time bell rings"
+      },
+      {
+        "text": "\"Goodnight, now it's time to go home\""
+      },
+      {
+        "text": "Then he makes it fast with one more thing"
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": "\"We are the Sultans"
+      },
+      {
+        "text": "We are the Sultans of Swing\""
       }
     ]
   }
